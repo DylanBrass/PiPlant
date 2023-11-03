@@ -1,0 +1,39 @@
+/* NavigationBar.css */
+nav {
+    background-color: #333;
+    padding: 10px 0;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+  
+  li {
+    font-size: 20px;
+    margin: 0 20px;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #a2c4ac;
+    font-weight: bold;
+    transition: color 0.2s;
+  }
+  
+  a:hover {
+    color: #688a76; /* Change the color on hover */
+  }
+  
+  .app-name {
+    font-size: 48px;
+    font-weight: bold;
+    color: #a2c4ac; /* Different color for the company name */
+  }
+  
