@@ -9,7 +9,7 @@ function MainPage() {
       <h1>Home Page</h1>
       <p>This is the home page.</p>
       <button onClick={axios
-        .get(`https://localhost:80`)
+        .get(`https://localhost:5000`)
         .then(function (response) {
           console.log(response.data);
         })
