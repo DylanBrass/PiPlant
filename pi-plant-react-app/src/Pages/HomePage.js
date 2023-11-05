@@ -13,6 +13,10 @@ function MainPage() {
         .then(function (response) {
           console.log(response.data);
         })
+        .catch((error) => {
+          console.log(error);
+      })
+  
       }>Test Get</button>
     </div>
   );
