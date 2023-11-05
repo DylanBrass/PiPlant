@@ -1,12 +1,18 @@
-from flask import Flask
-from flask_cors import CORS
+from flask import Flask, jsonify
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 CORS(app)
 
 @app.route('/')
+@cross_origin()
 def hello_world():  # put application's code here
-    return {'value': 'Hello World!'}
+    """GET in server"""
+    response = jsonify(message="Simple server is running")
+
+    # Enable Access-Control-Allow-Origin
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
 
 
 if __name__ == '__main__':
