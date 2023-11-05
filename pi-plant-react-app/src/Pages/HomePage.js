@@ -3,7 +3,7 @@ import './HomePage.css';
 import axios from 'axios'
 const testGet = () =>{
   axios
-        .get(`http://127.0.0.1:5000`)
+        .get(`http://192.168.0.35:5000`)
         .then(function (response) {
           console.log(response.data);
         })
