@@ -1,5 +1,6 @@
 import Navbar from "./NavigationBar";
 import './HomePage.css';
+import axios from 'axios'
 
 function MainPage() {
   return (
@@ -7,6 +8,12 @@ function MainPage() {
       <Navbar />
       <h1>Home Page</h1>
       <p>This is the home page.</p>
+      <button onClick={axios
+        .get(`https://localhost:80`)
+        .then(function (response) {
+          console.log(response.data);
+        })
+      }>Test Get</button>
     </div>
   );
 }
