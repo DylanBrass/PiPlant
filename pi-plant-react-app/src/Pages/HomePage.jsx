@@ -1,25 +1,33 @@
 import Navbar from "./NavigationBar";
 import './HomePage.css';
 import axios from 'axios'
-const testGet = () =>{
-  axios
-        .get('http://'+window.location.hostname+':5000')
-        .then(function (response) {
-          console.log(response.data);
-        })
-        .catch((error) => {
-          console.log(error);
-      })
-}
+import { useState } from "react";
+
+
+
 
 
 function MainPage() {
+  const[recentValues, setRecentValues] = useState([])
+
+  const getRecent = () =>{
+    axios
+          .get('http://'+window.location.hostname+':5000/getRecentValues')
+          .then(function (response) {
+            setRecentValues(response.data)
+          })
+          .catch((error) => {
+            console.log(error);
+        })
+  }
   return (
     <div>
       <Navbar />
       <h1>Home Page</h1>
       <p>This is the home page.</p>
-      <button onClick={()=> testGet()}>Test Get</button>
+      <button onClick={()=> getRecent()}>Get Current Value</button>
+      <h2>Recent Values</h2>
+      <p>{recentValues}</p>
     </div>
   );
 }
