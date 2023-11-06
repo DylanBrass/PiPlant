@@ -16,7 +16,7 @@ ads = ADS.ADS1015(i2c)
 # Create single-ended input on channel 0
 chan = AnalogIn(ads, ADS.P0)
 
-with open("~/Desktop/cap_config.json") as json_data_file:
+with open("cap_config.json") as json_data_file:
     config_data = json.load(json_data_file)
 
 
