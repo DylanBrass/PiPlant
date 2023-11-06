@@ -12,7 +12,7 @@ function MainPage() {
 
   const getRecent = () =>{
     axios
-          .get('http://'+window.location.hostname+':5000/getRecentValues')
+          .get('http://'+window.location.hostname+':5000/getCurrentValue')
           .then(function (response) {
             setRecentValues(response.data)
           })

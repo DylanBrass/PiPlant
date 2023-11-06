@@ -28,7 +28,7 @@ def percent_translation(raw_val):
     return round(per_val, 3)
 
 
-@app.route('/getCurrentValue', methods=['GET'])
+@app.route('/getCurrentValue', ['GET'])
 @cross_origin()
 def hello_world():
     currentvalue = "Saturation : {:>5} : {:>5} Volts".format("Saturation", "Voltage\n")
