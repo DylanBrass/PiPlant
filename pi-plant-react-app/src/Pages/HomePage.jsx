@@ -8,7 +8,7 @@ import { useState } from "react";
 
 
 function MainPage() {
-  const[recentValues, setRecentValues] = useState([])
+  const[recentValues, setRecentValues] = useState("No recent values")
 
   const getRecent = () =>{
     axios
