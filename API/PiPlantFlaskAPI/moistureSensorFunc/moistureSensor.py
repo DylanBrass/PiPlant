@@ -12,8 +12,10 @@ with open("cap_config.json") as json_data_file:
 print("I2C")
 # Create the I2C bus
 i2c = busio.I2C(board.SCL, board.SDA)
-print("ADS")
+print(i2c.scan())
 
+
+print("ADS")
 # Create the ADC object using the I2C bus
 ads = ADS.ADS1115(i2c)
 print("Chan")
