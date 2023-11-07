@@ -23,8 +23,9 @@ def getCurrentValue():
 
 
 def fetchDataHourly():
-    time.sleep(3)
-    print("Hello")
+    while True:
+        time.sleep(3)
+        print("Hello")
 
 
 if __name__ == '__main__':
