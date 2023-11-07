@@ -9,12 +9,19 @@
   
 .login-box {
     background-color: #f4f4f4;
-    padding: 20px;
+    padding-left: 5%;
+    padding-right: 5%;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-shadow: 2px 2px 5px #888888;
     width: 300px;
-    margin-top: 20px; /* Adjust the margin to control the space between the navbar and login box */
+    margin-top: 30px;
+}
+
+.login-box-image {
+  height: 60%;
+  border: 1px solid #ccc;
+  width: 300px;
+  margin-top: 30px;
 }
   
   .login-title {
@@ -24,14 +31,32 @@
   
   .form-group {
     margin: 10px 0;
-  }
+    text-align: left;
+}
+
+.form-group label {
+    display: block; 
+    margin-bottom: 5px; 
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px; 
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
   
   .login-button {
-    background-color: #007bff;
+    background-color: #a2c4ac;
     color: #fff;
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
-  }
+    text-align: center;
+    margin: 0 auto; 
+    margin-top: 10%;
+    display: block;
+}
   

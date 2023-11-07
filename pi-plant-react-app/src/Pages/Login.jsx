@@ -1,6 +1,7 @@
 import NavigationBar from "./NavigationBar";
 import React, { useState } from 'react';
 import './Login.css'; // Import your CSS file for styling
+import plant1 from './Plant1.jpg'
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -23,11 +24,13 @@ function Login() {
     <div>
       <NavigationBar />
       <div className="login-container">
-        <div className="login-box">
+      <img src={plant1} alt="Image Description" className="login-box-image"/>
+      
+        <div className="login-box" style={{ height: '60%' }}>
           <h1 className="login-title">Login</h1>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label htmlFor="email">Email:</label>
+              <label htmlFor="email">Email</label>
               <input
                 type="email"
                 id="email"
@@ -36,7 +39,7 @@ function Login() {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="password">Password:</label>
+              <label htmlFor="password">Password</label>
               <input
                 type="password"
                 id="password"
