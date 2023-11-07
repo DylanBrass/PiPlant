@@ -2,7 +2,7 @@ from flask import jsonify
 import json
 import board
 import busio
-import adafruit_ads1x15.ads1015 as ADS
+import adafruit_ads1x15.ads1115 as ADS
 from adafruit_ads1x15.analog_in import AnalogIn
 
 with open("cap_config.json") as json_data_file:
