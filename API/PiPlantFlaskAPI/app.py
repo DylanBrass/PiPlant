@@ -1,11 +1,12 @@
-from flask import Flask, jsonify
-from flask_cors import CORS, cross_origin
-import time
+from flask import Flask
+from flask_cors import cross_origin
 import json
 import board
 import busio
 import adafruit_ads1x15.ads1015 as ADS
 from adafruit_ads1x15.analog_in import AnalogIn
+
+from moistureSensorFunc import moistureSensor
 
 app = Flask(__name__)
 
@@ -26,22 +27,15 @@ def percent_translation(raw_val):
     per_val = abs((raw_val - config_data["zero_saturation"]) / (
             config_data["full_saturation"] - config_data["zero_saturation"])) * 100
     return round(per_val, 3)
+@app.route('/getCurrentValue', methods=['GET'])
+@cross_origin()
+def toggleLight():
 
 
 @app.route('/getCurrentValue', methods=['GET'])
 @cross_origin()
-def hello_world():
-    currentvalue = "Saturation : {:>5} : {:>5} Volts".format("Saturation", "Voltage\n")
-    try:
-        currentvalue = "SOIL SENSOR: " + "{:>5}%\t{:>5.3f}".format(percent_translation(chan.value), chan.voltage)
-    except Exception as error:
-        raise error
-    except KeyboardInterrupt:
-        print('exiting script')
-
-    response = jsonify(currentValue=currentvalue)
-
-    return response
+def getCurrentValue():
+    return moistureSensor.getCurrentValueOfMoistureSensor()
 
 
 if __name__ == '__main__':
