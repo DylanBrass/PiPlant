@@ -9,12 +9,14 @@ with open("cap_config.json") as json_data_file:
     config_data = json.load(json_data_file)
 # Create an ADS1115 ADC (16-bit) instance.
 
-
+print("I2C")
 # Create the I2C bus
 i2c = busio.I2C(board.SCL, board.SDA)
+print("ADS")
 
 # Create the ADC object using the I2C bus
 ads = ADS.ADS1115(i2c)
+print("Chan")
 
 # Create single-ended input on channel 0
 chan = AnalogIn(ads, ADS.P0)
