@@ -4,9 +4,8 @@ LED1_PIN = 12
 led1State = False
 
 GPIO.setmode(GPIO.BCM)
-
+GPIO.setup(LED1_PIN, GPIO.OUT)
 GPIO.output(LED1_PIN, led1State)
-
 
 def toggleLight():
     led1State = True

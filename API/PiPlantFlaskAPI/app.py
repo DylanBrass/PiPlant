@@ -29,10 +29,13 @@ def percent_translation(raw_val):
     per_val = abs((raw_val - config_data["zero_saturation"]) / (
             config_data["full_saturation"] - config_data["zero_saturation"])) * 100
     return round(per_val, 3)
+
+
 @app.route('/getCurrentValue', methods=['GET'])
 @cross_origin()
 def toggleLight():
     ligthFunctions.lightFunctionsFunctions.toggleLight()
+
 
 @app.route('/getCurrentValue', methods=['GET'])
 @cross_origin()
