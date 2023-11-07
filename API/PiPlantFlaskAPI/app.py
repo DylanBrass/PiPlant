@@ -3,6 +3,7 @@ from flask_cors import cross_origin
 import time
 import daemon
 import ligthFunctions.lightFunctionsFunctions
+import threading
 from moistureSensorFunc import moistureSensor
 
 app = Flask(__name__)
@@ -22,14 +23,5 @@ def getCurrentValue():
     # return moistureSensor.getCurrentValueOfMoistureSensor()
 
 
-def fetchDataHourly():
-    while True:
-        time.sleep(3)
-        print("Hello")
-
-
 if __name__ == '__main__':
     app.run()
-
-with daemon.DaemonContext():
-    fetchDataHourly()
