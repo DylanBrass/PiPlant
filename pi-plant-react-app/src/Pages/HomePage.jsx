@@ -20,12 +20,26 @@ function MainPage() {
             console.log(error);
         })
   }
+
+  const toggleLight = () =>{
+    axios.post('http://'+window.location.hostname+':5000/toggleLight')
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
   return (
     <div>
       <Navbar />
       <h1>Home Page</h1>
+      <button onClick={()=>{
+        toggleLight()
+      }}>Toggle Light</button>
       <p>This is the home page.</p>
       <button onClick={()=> getRecent()}>Get Current Value</button>
+
       <h2>Recent Values</h2>
       <p>{recentValues}</p>
     </div>

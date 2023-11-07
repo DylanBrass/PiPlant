@@ -1,19 +1,17 @@
 from flask import Flask
 from flask_cors import cross_origin
 
-
 import ligthFunctions.lightFunctionsFunctions
 from moistureSensorFunc import moistureSensor
 
 app = Flask(__name__)
 
 
-
-
 @app.route('/toggleLight', methods=['GET'])
 @cross_origin()
 def toggleLight():
     ligthFunctions.lightFunctionsFunctions.toggleLight()
+    return '', 200
 
 
 @app.route('/getCurrentValue', methods=['GET'])
