@@ -1,8 +1,7 @@
-import daemon
 from flask import Flask
 from flask_cors import cross_origin
 import time
-
+import daemon
 import ligthFunctions.lightFunctionsFunctions
 from moistureSensorFunc import moistureSensor
 
@@ -22,13 +21,14 @@ def getCurrentValue():
     return {'currentValue': "NAN"}
     # return moistureSensor.getCurrentValueOfMoistureSensor()
 
+
 def fetchDataHourly():
     time.sleep(3)
     print("Hello")
 
+
 if __name__ == '__main__':
     app.run()
 
-
-with daemon.daemonContext():
+with daemon.DaemonContext():
     fetchDataHourly()
