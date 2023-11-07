@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 
 
-@app.route('/getCurrentValue', methods=['GET'])
+@app.route('/toggleLight', methods=['GET'])
 @cross_origin()
 def toggleLight():
     ligthFunctions.lightFunctionsFunctions.toggleLight()
