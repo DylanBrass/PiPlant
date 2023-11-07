@@ -1,5 +1,7 @@
+import daemon
 from flask import Flask
 from flask_cors import cross_origin
+import time
 
 import ligthFunctions.lightFunctionsFunctions
 from moistureSensorFunc import moistureSensor
@@ -10,9 +12,7 @@ app = Flask(__name__)
 @app.route('/toggleLight', methods=['POST'])
 @cross_origin()
 def toggleLight():
-    print("Calling Toggling Light !")
     ligthFunctions.lightFunctionsFunctions.toggleLight()
-    print("After Toggling light !")
     return '', 200
 
 
@@ -22,6 +22,13 @@ def getCurrentValue():
     return {'currentValue': "NAN"}
     # return moistureSensor.getCurrentValueOfMoistureSensor()
 
+def fetchDataHourly():
+    time.sleep(3)
+    print("Hello")
 
 if __name__ == '__main__':
     app.run()
+
+
+with daemon.daemonContext():
+    fetchDataHourly()

@@ -10,6 +10,5 @@ GPIO.output(LED1_PIN, led1State)
 
 def toggleLight():
     global led1State
-    print("Toggling Light !")
     led1State = not led1State
     GPIO.output(LED1_PIN, led1State)
