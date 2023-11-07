@@ -19,8 +19,7 @@ def toggleLight():
 @app.route('/getCurrentValue', methods=['GET'])
 @cross_origin()
 def getCurrentValue():
-    return {'currentValue': "NAN"}
-    # return moistureSensor.getCurrentValueOfMoistureSensor()
+    return moistureSensor.getCurrentValueOfMoistureSensor()
 
 
 if __name__ == '__main__':
