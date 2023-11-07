@@ -7,7 +7,7 @@ from moistureSensorFunc import moistureSensor
 app = Flask(__name__)
 
 
-@app.route('/toggleLight', methods=['GET'])
+@app.route('/toggleLight', methods=['POST'])
 @cross_origin()
 def toggleLight():
     ligthFunctions.lightFunctionsFunctions.toggleLight()
