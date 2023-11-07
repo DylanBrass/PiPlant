@@ -10,7 +10,9 @@ app = Flask(__name__)
 @app.route('/toggleLight', methods=['POST'])
 @cross_origin()
 def toggleLight():
+    print("Calling Toggling Light !")
     ligthFunctions.lightFunctionsFunctions.toggleLight()
+    print("After Toggling light !")
     return '', 200
 
 
