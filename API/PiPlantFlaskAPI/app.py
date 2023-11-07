@@ -6,7 +6,9 @@ import busio
 import adafruit_ads1x15.ads1015 as ADS
 from adafruit_ads1x15.analog_in import AnalogIn
 
+import ligthFunctions.lightFunctionsFunctions
 from moistureSensorFunc import moistureSensor
+from ligthFunctions.lightFunctionsFunctions import *
 
 app = Flask(__name__)
 
@@ -30,7 +32,7 @@ def percent_translation(raw_val):
 @app.route('/getCurrentValue', methods=['GET'])
 @cross_origin()
 def toggleLight():
-
+    ligthFunctions.lightFunctionsFunctions.toggleLight()
 
 @app.route('/getCurrentValue', methods=['GET'])
 @cross_origin()
