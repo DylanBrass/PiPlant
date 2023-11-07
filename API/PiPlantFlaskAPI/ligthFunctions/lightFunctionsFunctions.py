@@ -1,12 +1,15 @@
 import RPi.GPIO as GPIO
 
-LED1_PIN = 12
+LED1_PIN = 24
 led1State = False
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(LED1_PIN, GPIO.OUT)
-GPIO.output(LED1_PIN, GPIO.LOW)
+GPIO.output(LED1_PIN, led1State)
+
 
 def toggleLight():
+    global led1State
     print("Toggling Light !")
-    GPIO.output(LED1_PIN, GPIO.HIGH)
+    led1State = not led1State
+    GPIO.output(LED1_PIN, led1State)
