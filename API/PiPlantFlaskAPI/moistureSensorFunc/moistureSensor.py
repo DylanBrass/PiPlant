@@ -7,10 +7,15 @@ from adafruit_ads1x15.analog_in import AnalogIn
 
 with open("cap_config.json") as json_data_file:
     config_data = json.load(json_data_file)
+# Create an ADS1115 ADC (16-bit) instance.
+
+
 # Create the I2C bus
 i2c = busio.I2C(board.SCL, board.SDA)
+
 # Create the ADC object using the I2C bus
-ads = ADS.ADS1015(i2c)
+ads = ADS.ADS1115(i2c)
+
 # Create single-ended input on channel 0
 chan = AnalogIn(ads, ADS.P0)
 
