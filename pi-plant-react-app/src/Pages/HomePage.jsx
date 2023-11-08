@@ -48,8 +48,8 @@ function MainPage() {
       <Navbar />
       <h1>Home Page</h1>
       <select
-        onChange={(e) => selectedLight(e.target.value)}
-        defaultValue={setSelectedLight}
+        onChange={(e) => setSelectedLight(e.target.value)}
+        defaultValue={selectedLight}
       >
         {
           Array.from(Array(numberOfLights).keys()).map((i) => {
