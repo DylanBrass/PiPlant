@@ -1,5 +1,5 @@
 import RPi.GPIO as GPIO
-from flask import jsonify
+from flask import jsonify, abort
 
 LED1_PIN = 24
 led1State = False
@@ -14,8 +14,11 @@ for pin in allLights.keys():
 
 def toggleLight(light: int):
     global allLights
-    lightPin = list(allLights.keys())[light]
-    allLights[lightPin] = not allLights.get(lightPin)
-    GPIO.output(lightPin, allLights.get(lightPin))
+    if(light < len(allLights)):
+        lightPin = list(allLights.keys())[light - 1]
+        allLights[lightPin] = not allLights.get(lightPin)
+        GPIO.output(lightPin, allLights.get(lightPin))
 
-    return jsonify(lightStatus=allLights[lightPin])
+        return jsonify(lightStatus=allLights[lightPin])
+
+    abort(400)
