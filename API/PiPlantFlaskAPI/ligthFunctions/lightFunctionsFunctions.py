@@ -7,7 +7,7 @@ led1State = False
 LED2_PIN = 23
 led2State = False
 
-allLights = {LED1_PIN: led1State}
+allLights = {LED1_PIN: led1State, LED2_PIN: led2State}
 
 GPIO.setmode(GPIO.BCM)
 for pin in allLights.keys():
