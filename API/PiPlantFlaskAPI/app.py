@@ -9,11 +9,10 @@ from moistureSensorFunc import moistureSensor
 app = Flask(__name__)
 
 
-@app.route('/toggleLight', methods=['POST'])
+@app.route('/toggleLight/<lightNumber>', methods=['POST'])
 @cross_origin()
-def toggleLight():
-    ligthFunctions.lightFunctionsFunctions.toggleLight()
-    return '', 200
+def toggleLight(lightNumber: int):
+    return ligthFunctions.lightFunctionsFunctions.toggleLight(lightNumber)
 
 
 @app.route('/getCurrentValue', methods=['GET'])

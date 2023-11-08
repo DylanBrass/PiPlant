@@ -9,7 +9,7 @@ import { useState } from "react";
 
 function MainPage() {
   const[recentValues, setRecentValues] = useState("No recent values")
-
+  const[lightStatus, setLightStatus] = useState("Light status is unknown")
   const getRecent = () =>{
     axios
           .get('http://'+window.location.hostname+':5000/getCurrentValue')
@@ -22,9 +22,9 @@ function MainPage() {
   }
 
   const toggleLight = () =>{
-    axios.post('http://'+window.location.hostname+':5000/toggleLight')
+    axios.post('http://'+window.location.hostname+':5000/toggleLight/1')
     .then(function (response) {
-      console.log(response);
+      setLightStatus(response.data.lightStatus)
     })
     .catch(function (error) {
       console.log(error);
