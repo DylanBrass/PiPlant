@@ -6,6 +6,12 @@ from moistureSensorFunc import moistureSensor
 app = Flask(__name__)
 
 
+@app.route('/numberOfLights')
+@cross_origin()
+def numberOfLights():
+    return ligthFunctions.lightFunctionsFunctions.numberOfLights()
+
+
 @app.route('/toggleLight/<lightNumber>', methods=['POST'])
 @cross_origin()
 def toggleLight(lightNumber: int):
