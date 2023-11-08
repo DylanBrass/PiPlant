@@ -9,7 +9,7 @@ import { useEffect } from "react";
 
 
 function MainPage() {
-  const[recentValues, setRecentValues] = useState("No recent values")
+  const[recentValues, setRecentValues] = useState([])
   const[selectedLight, setSelectedLight] = useState(1)
   const[numberOfLights, setNumberOfLights] = useState(0)
   const getRecent = () =>{
@@ -18,6 +18,7 @@ function MainPage() {
           .then(function (response) {
             console.log(response.data)
             console.log(response)
+            setRecentValues(response.data)
           })
           .catch((error) => {
             console.log(error);
@@ -67,6 +68,11 @@ function MainPage() {
       <button onClick={()=> getRecent()}>Get Current Value</button>
 
       <h2>Recent Values</h2>
+      {
+        recentValues.map((value, index)=>{
+          return <p id={index} >{value}</p>
+        })
+      }
     </div>
   );
 }
