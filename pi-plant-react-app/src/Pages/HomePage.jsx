@@ -10,7 +10,6 @@ import { useEffect } from "react";
 
 function MainPage() {
   const[recentValues, setRecentValues] = useState("No recent values")
-  const[lightStatus, setLightStatus] = useState("Light status is unknown")
   const[selectedLight, setSelectedLight] = useState(1)
   const[numberOfLights, setNumberOfLights] = useState(0)
   const getRecent = () =>{
@@ -61,8 +60,6 @@ function MainPage() {
       <button onClick={()=>{
         toggleLight()
       }}>Toggle Light</button>
-      <h2>Light Status</h2>
-      <p>{lightStatus}</p>
 
 
       <p>This is the home page.</p>
