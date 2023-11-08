@@ -43,4 +43,4 @@ def getCurrentValueOfMoistureSensor():
     except KeyboardInterrupt:
         print('exiting script')
 
-    return jsonify(allValues=list(allvalues))
+    return jsonify(allValues=allvalues)
