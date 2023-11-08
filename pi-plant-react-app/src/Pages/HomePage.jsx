@@ -2,6 +2,7 @@ import Navbar from "./NavigationBar";
 import './HomePage.css';
 import axios from 'axios'
 import { useState } from "react";
+import { useEffect } from "react";
 
 
 
@@ -11,6 +12,7 @@ function MainPage() {
   const[recentValues, setRecentValues] = useState("No recent values")
   const[lightStatus, setLightStatus] = useState("Light status is unknown")
   const[selectedLight, setSelectedLight] = useState(1)
+  const[numberOfLights, setNumberOfLights] = useState(0)
   const getRecent = () =>{
     axios
           .get('http://'+window.location.hostname+':5000/getCurrentValue')
@@ -33,6 +35,14 @@ function MainPage() {
 
     
   }
+  useEffect(() => {
+    axios.get('http://'+window.location.hostname+':5000/numberOfLights')
+    .then(function (response) {
+      setNumberOfLights(response.data.numberOfLights)
+    }).catch(function (error) {
+      console.log(error);
+    })
+  },[]) 
   return (
     <div>
       <Navbar />
@@ -42,17 +52,10 @@ function MainPage() {
         defaultValue={setSelectedLight}
       >
         {
-          axios.get('http://'+window.location.hostname+':5000/numberOfLights')
-          .then(function (response) {
-            for (let i = 1; i <= response.data.numberOfLights; i++) {
-              return <option value={i}>{i}</option>
-            }
-          }).catch(function (error) {
-            console.log(error);
+          Array.from(Array(numberOfLights).keys()).map((i) => {
+            return <option value={i+1}>{i+1}</option>
           })
-
-        }
-          
+        }         
       </select>
       <button onClick={()=>{
         toggleLight()
