@@ -47,9 +47,9 @@ function MainPage() {
             for (let i = 1; i <= response.data.numberOfLights; i++) {
               return <option value={i}>{i}</option>
             }
-          }.catch(function (error) {
+          }).catch(function (error) {
             console.log(error);
-          }))
+          })
 
         }
           
