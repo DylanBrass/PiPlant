@@ -68,11 +68,7 @@ function MainPage() {
       <button onClick={()=> getRecent()}>Get Current Value</button>
 
       <h2>Recent Values</h2>
-      {
-        recentValues.map((value, index)=>{
-          return <p id={index} >{value}</p>
-        })
-      }
+     
     </div>
   );
 }
