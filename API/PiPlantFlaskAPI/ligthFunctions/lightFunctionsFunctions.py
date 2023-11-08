@@ -14,7 +14,7 @@ for pin in allLights.keys():
 
 def toggleLight(light: int):
     global allLights
-    lightPin = list(allLights)[light]
+    lightPin = list(allLights.keys())[light]
     allLights[lightPin] = not allLights.get(lightPin)
     GPIO.output(lightPin, allLights.get(lightPin))
 
