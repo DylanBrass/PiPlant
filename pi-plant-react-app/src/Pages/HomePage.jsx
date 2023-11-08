@@ -27,10 +27,11 @@ function MainPage() {
   const toggleLight = () =>{
     axios.post('http://'+window.location.hostname+':5000/toggleLight/' + selectedLight)
     .then(function (response) {
-      setLightStatus(response.data.lightStatus)
+      console.log(response)
+      alert("Light is now " + response.data.lightStatus)
     })
     .catch(function (error) {
-      console.log(error);
+      console.log(error)
     });
 
     
