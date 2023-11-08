@@ -17,7 +17,11 @@ i2c = busio.I2C(board.SCL, board.SDA)
 ads = ADS.ADS1015(i2c)
 
 # Create single-ended input on channel 0
-chan = AnalogIn(ads, ADS.P0)
+sensor1 = AnalogIn(ads, ADS.P0)
+
+sensor2 = AnalogIn(ads, ADS.P1)
+
+allMoistureSensors = [sensor1, sensor2]
 
 
 def percent_translation(raw_val):
@@ -27,14 +31,16 @@ def percent_translation(raw_val):
 
 
 def getCurrentValueOfMoistureSensor():
-    currentvalue = "Saturation : {:>5} : {:>5} Volts".format("Saturation", "Voltage\n")
+    allvalues = {}
+
     try:
-        currentvalue = "SOIL SENSOR: " + "{:>5}%\t{:>5.3f}".format(percent_translation(chan.value), chan.voltage)
+        counter = 1
+        for sensor in allMoistureSensors:
+            allvalues[counter] = {"Value": sensor.value, "Voltage": sensor.voltage}
+            counter += 1
     except Exception as error:
         raise error
     except KeyboardInterrupt:
         print('exiting script')
 
-    response = jsonify(currentValue=currentvalue)
-
-    return response
+    return jsonify(allValues=allvalues)
