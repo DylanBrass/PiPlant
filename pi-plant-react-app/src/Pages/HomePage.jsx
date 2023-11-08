@@ -16,7 +16,8 @@ function MainPage() {
     axios
           .get('http://'+window.location.hostname+':5000/getCurrentValue')
           .then(function (response) {
-            setRecentValues(response.data.currentValue)
+            console.log(response.data)
+            console.log(response)
           })
           .catch((error) => {
             console.log(error);
@@ -66,7 +67,6 @@ function MainPage() {
       <button onClick={()=> getRecent()}>Get Current Value</button>
 
       <h2>Recent Values</h2>
-      <p>{recentValues}</p>
     </div>
   );
 }
