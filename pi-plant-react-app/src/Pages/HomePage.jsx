@@ -18,7 +18,7 @@ function MainPage() {
           .then(function (response) {
             console.log(response.data)
             console.log(response)
-            setRecentValues(response.data)
+            setRecentValues(response.data.allValues)
           })
           .catch((error) => {
             console.log(error);
