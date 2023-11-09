@@ -1,3 +1,4 @@
+import datetime
 import time
 
 from flask import jsonify
@@ -54,6 +55,9 @@ def startCollectDataThread():
 
 
 def collectDataSensor():
+
     while True:
-        print("hello")
+        fileName = f"{datetime.date.today()}.txt"
+        f = open(fileName, "a")
+        f.write("Now the file has more content!")
         time.sleep(3)
