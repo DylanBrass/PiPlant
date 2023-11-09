@@ -4,7 +4,6 @@ from flask_cors import cross_origin
 import ligthFunctions.lightFunctionsFunctions
 from moistureSensorFunc import moistureSensor
 
-moistureSensor.startCollectDataThread()
 
 app = Flask(__name__)
 
@@ -30,6 +29,6 @@ def getCurrentValue():
 if __name__ == '__main__':
     app.run(threaded=True)
 
-
+moistureSensor.startCollectDataThread()
 
 

@@ -51,7 +51,7 @@ def getCurrentValueOfMoistureSensor():
 
 
 def startCollectDataThread():
-    threading.Thread(target=runCollectDataThread()).start()
+    threading.Thread(target=runCollectDataThread).start()
 
 
 def runCollectDataThread():
