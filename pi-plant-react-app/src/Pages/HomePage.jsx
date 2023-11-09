@@ -20,8 +20,6 @@ function MainPage() {
           .then(function (response) {
           
             setRecentValues(response.data.allValues)
-            console.log(response.data.allValues)
-            console.log(recentValues)
           })
           .catch((error) => {
             console.log(error);
@@ -72,15 +70,14 @@ function MainPage() {
 
       <h2>Recent Values</h2>
       {
-        recentValues.map((value)=>{
-          console.log(recentValues)
-
-          return <div>
-              <h3>{value.sensorNum}</h3>
-              <p>{value.sensorNum.values.Value}</p>
-           </div>
-        })
-      }
+          Array.from(Array(numberOfLights).map((i) => {
+            console.log(recentValues)
+            console.log(i)
+            return <div>
+                <h3>{i.sensorNum}</h3>
+                <p>{i.sensorNum.values.Value}</p>
+             </div>          })
+       
     </div>
   );
 }
