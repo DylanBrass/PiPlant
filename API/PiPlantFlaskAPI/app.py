@@ -20,7 +20,7 @@ def toggleLight(lightNumber: int):
     return ligthFunctions.lightFunctionsFunctions.toggleLight(int(lightNumber))
 
 
-@app.route('/getCurrentValue', methods=['GET'])
+@app.route('/getCurrentValues', methods=['GET'])
 @cross_origin()
 def getCurrentValue():
     return moistureSensor.getCurrentValueOfMoistureSensor()

@@ -12,9 +12,11 @@ function MainPage() {
   const[recentValues, setRecentValues] = useState([])
   const[selectedLight, setSelectedLight] = useState(1)
   const[numberOfLights, setNumberOfLights] = useState(0)
+
+  
   const getRecent = () =>{
     axios
-          .get('http://'+window.location.hostname+':5000/getCurrentValue')
+          .get('http://'+window.location.hostname+':5000/getCurrentValues')
           .then(function (response) {
           
             setRecentValues(response.data.allValues)
@@ -71,6 +73,8 @@ function MainPage() {
       <h2>Recent Values</h2>
       {
         recentValues.map((value)=>{
+          console.log(recentValues)
+
           return <div>
               <h3>{value.sensorNum}</h3>
               <p>{value.sensorNum.values.Value}</p>
