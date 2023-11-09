@@ -9,7 +9,7 @@ import { useEffect } from "react";
 
 
 function MainPage() {
-  const[recentValues, setRecentValues] = useState({})
+  const[recentValues, setRecentValues] = useState([])
   const[selectedLight, setSelectedLight] = useState(1)
   const[numberOfLights, setNumberOfLights] = useState(0)
   const getRecent = () =>{
@@ -17,8 +17,8 @@ function MainPage() {
           .get('http://'+window.location.hostname+':5000/getCurrentValue')
           .then(function (response) {
           
-            setRecentValues(response.data)
-
+            setRecentValues(response.data.allValues)
+            console.log(response.data.allValues)
             console.log(recentValues)
           })
           .catch((error) => {
