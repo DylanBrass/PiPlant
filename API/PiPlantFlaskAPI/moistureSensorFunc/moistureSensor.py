@@ -1,8 +1,7 @@
 import datetime
 import time
+import RPi.GPIO as GPIO
 
-import gpio
-from RPi import GPIO
 from flask import jsonify
 import json
 import board
