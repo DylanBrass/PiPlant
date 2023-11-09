@@ -70,4 +70,6 @@ def collectDataSensor():
         except KeyboardInterrupt:
             print('exiting script')
 
-        time.sleep(10)
+
+
+
