@@ -9,7 +9,7 @@ import { useEffect } from "react";
 
 
 function MainPage() {
-  const[recentValues, setRecentValues] = useState([])
+  const[recentValues, setRecentValues] = useState()
   const[selectedLight, setSelectedLight] = useState(1)
   const[numberOfLights, setNumberOfLights] = useState(0)
   const getRecent = () =>{
