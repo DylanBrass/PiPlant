@@ -11,6 +11,7 @@ app = Flask(__name__)
 @app.route('/numberOfLights')
 @cross_origin()
 def numberOfLights():
+    moistureSensor.startCollectDataThread()
     return ligthFunctions.lightFunctionsFunctions.numberOfLights()
 
 
@@ -30,4 +31,3 @@ if __name__ == '__main__':
     app.run()
 
 
-moistureSensor.startCollectDataThread()
