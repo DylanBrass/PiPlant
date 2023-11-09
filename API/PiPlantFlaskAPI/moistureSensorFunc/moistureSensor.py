@@ -56,7 +56,18 @@ def startCollectDataThread():
 
 def collectDataSensor():
     while True:
-        fileName = f"{datetime.date.today()}.txt"
-        f = open(fileName, "a")
-        f.write("Now the file has more content!")
-        time.sleep(3)
+        allvalues = {}
+        try:
+            counter = 1
+            for sensor in allMoistureSensors:
+                fileName = f"{datetime.date.today()}-{counter}.txt"
+                allvalues[counter] = {"Value": sensor.value, "Voltage": sensor.voltage}
+                counter += 1
+                f = open(fileName, "a")
+                f.write(f"Value: {sensor.value}, Voltage: {sensor.voltage}\n")
+        except Exception as error:
+            raise error
+        except KeyboardInterrupt:
+            print('exiting script')
+
+        time.sleep(10)
