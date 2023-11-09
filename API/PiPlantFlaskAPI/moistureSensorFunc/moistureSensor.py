@@ -1,9 +1,12 @@
+import time
+
 from flask import jsonify
 import json
 import board
 import busio
 import adafruit_ads1x15.ads1115 as ADS
 from adafruit_ads1x15.analog_in import AnalogIn
+import threading
 
 with open("cap_config.json") as json_data_file:
     config_data = json.load(json_data_file)
@@ -46,9 +49,11 @@ def getCurrentValueOfMoistureSensor():
     return jsonify(allValues=allvalues)
 
 
+def startCollectDataThread():
+    threading.Thread(target=collectDataSensor()).start()
+
+
 def collectDataSensor():
     while True:
         print("hello")
-
-
-
+        time.sleep(3)
