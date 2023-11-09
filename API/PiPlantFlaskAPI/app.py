@@ -2,6 +2,7 @@ from flask import Flask
 from flask_cors import cross_origin
 import ligthFunctions.lightFunctionsFunctions
 from moistureSensorFunc import moistureSensor
+import daemon
 
 app = Flask(__name__)
 
@@ -26,3 +27,6 @@ def getCurrentValue():
 
 if __name__ == '__main__':
     app.run()
+
+    with daemon.DaemonContext():
+        moistureSensor.collectDataSensor()

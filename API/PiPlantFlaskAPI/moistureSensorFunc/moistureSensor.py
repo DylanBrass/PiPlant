@@ -1,4 +1,3 @@
-import daemon
 from flask import jsonify
 import json
 import board
@@ -52,5 +51,4 @@ def collectDataSensor():
         print("hello")
 
 
-with daemon.DaemonContext():
-    collectDataSensor()
+
