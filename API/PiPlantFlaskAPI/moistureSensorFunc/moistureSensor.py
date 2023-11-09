@@ -1,6 +1,8 @@
 import datetime
 import time
 
+import gpio
+from RPi import GPIO
 from flask import jsonify
 import json
 import board
@@ -55,6 +57,7 @@ def startCollectDataThread():
 
 
 def collectDataSensor():
+
     while True:
         allvalues = {}
         try:
@@ -69,7 +72,9 @@ def collectDataSensor():
             raise error
         except KeyboardInterrupt:
             print('exiting script')
+            GPIO.cleanup()
 
+        time.sleep(10)
 
 
 
