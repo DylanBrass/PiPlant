@@ -16,9 +16,10 @@ function MainPage() {
     axios
           .get('http://'+window.location.hostname+':5000/getCurrentValue')
           .then(function (response) {
-            console.log(response.data)
-            console.log(response)
+          
             setRecentValues(response.data.allValues)
+
+            console.log(recentValues)
           })
           .catch((error) => {
             console.log(error);
@@ -72,7 +73,7 @@ function MainPage() {
         recentValues.map((value)=>{
           return <div>
               <h3>{value.sensorNum}</h3>
-              <p>{value.values.Value}</p>
+              <p>{value.sensorNum.values.Value}</p>
            </div>
         })
       }
