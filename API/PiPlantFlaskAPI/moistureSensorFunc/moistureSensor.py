@@ -35,19 +35,19 @@ def percent_translation(raw_val):
 
 
 def getCurrentValueOfMoistureSensor():
-    allvalues = {}
+    allvalues = []
 
     try:
         counter = 1
         for sensor in allMoistureSensors:
-            allvalues[counter] = {"sensorNum": counter, "values": {"Value": sensor.value, "Voltage": sensor.voltage}}
+            allvalues.append({"sensorNum": counter, "values": {"Value": sensor.value, "Voltage": sensor.voltage}})
             counter += 1
     except Exception as error:
         raise error
     except KeyboardInterrupt:
         print('exiting script')
 
-    return jsonify(allValues=[allvalues])
+    return jsonify(allValues=allvalues)
 
 
 def startCollectDataThread():
