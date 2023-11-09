@@ -55,7 +55,6 @@ def startCollectDataThread():
 
 
 def collectDataSensor():
-
     while True:
         fileName = f"{datetime.date.today()}.txt"
         f = open(fileName, "a")
