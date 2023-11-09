@@ -1,3 +1,4 @@
+import daemon
 from flask import jsonify
 import json
 import board
@@ -43,4 +44,13 @@ def getCurrentValueOfMoistureSensor():
     except KeyboardInterrupt:
         print('exiting script')
 
-    return jsonify(allValues=jsonify(allvalues))
+    return jsonify(allValues=allvalues)
+
+
+def collectDataSensor():
+    while True:
+        print("hello")
+
+
+with daemon.DaemonContext():
+    collectDataSensor()
