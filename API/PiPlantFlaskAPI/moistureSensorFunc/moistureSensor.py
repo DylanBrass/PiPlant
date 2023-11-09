@@ -56,7 +56,7 @@ def startCollectDataThread():
 
 def runCollectDataThread():
     while True:
-        collectDataSensor(1)
+        collectDataSensor(10)
 
 
 def collectDataSensor(WaitTime: int):
