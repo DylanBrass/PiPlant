@@ -40,7 +40,7 @@ def getCurrentValueOfMoistureSensor():
     try:
         counter = 1
         for sensor in allMoistureSensors:
-            allvalues[counter] = {"Value": sensor.value, "Voltage": sensor.voltage}
+            allvalues[counter] = jsonify(sensorNum=counter, values={"Value": sensor.value, "Voltage": sensor.voltage})
             counter += 1
     except Exception as error:
         raise error
