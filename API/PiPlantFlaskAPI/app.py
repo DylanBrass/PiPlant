@@ -29,7 +29,7 @@ def getCurrentValue():
 if __name__ == '__main__':
     app.run(threaded=True)
 
-    
+
 try:
     moistureSensor.startCollectDataThread()
 except KeyboardInterrupt:
