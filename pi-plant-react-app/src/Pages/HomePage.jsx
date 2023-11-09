@@ -69,7 +69,7 @@ function MainPage() {
 
       <h2>Recent Values</h2>
       {
-        recentValues.allValues.map((value)=>{
+        recentValues.map((value)=>{
           return <div>
               <h3>{value.sensorNum}</h3>
               <p>{value.values.Value}</p>
