@@ -51,7 +51,10 @@ def getCurrentValueOfMoistureSensor():
 
 
 def startCollectDataThread():
-    threading.Thread(target=runCollectDataThread).start()
+    try:
+        threading.Thread(target=runCollectDataThread).start()
+    except KeyboardInterrupt:
+        print('exiting script')
 
 
 def runCollectDataThread():
