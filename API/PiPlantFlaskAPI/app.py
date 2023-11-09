@@ -4,6 +4,9 @@ import ligthFunctions.lightFunctionsFunctions
 from moistureSensorFunc import moistureSensor
 import daemon
 
+with daemon.DaemonContext():
+    moistureSensor.collectDataSensor()
+
 app = Flask(__name__)
 
 
@@ -28,5 +31,4 @@ def getCurrentValue():
 if __name__ == '__main__':
     app.run()
 
-with daemon.DaemonContext():
-    moistureSensor.collectDataSensor()
+
