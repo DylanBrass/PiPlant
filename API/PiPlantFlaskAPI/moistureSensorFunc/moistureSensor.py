@@ -56,23 +56,27 @@ def startCollectDataThread():
 
 def runCollectDataThread():
     while True:
-        collectDataSensor(10)
-
-
-def collectDataSensor(WaitTime: int):
-        allvalues = {}
         try:
-            counter = 1
-            for sensor in allMoistureSensors:
-                fileName = f"{datetime.date.today()}-{counter}.txt"
-                allvalues[counter] = {"Value": sensor.value, "Voltage": sensor.voltage}
-                counter += 1
-                f = open(fileName, "a")
-                f.write(f"Value: {sensor.value}, Voltage: {sensor.voltage}\n")
-        except Exception as error:
-            raise error
+            collectDataSensor(10)
         except KeyboardInterrupt:
             print('exiting script')
             GPIO.cleanup()
 
-        time.sleep(WaitTime)
+
+def collectDataSensor(WaitTime: int):
+    allvalues = {}
+    try:
+        counter = 1
+        for sensor in allMoistureSensors:
+            fileName = f"{datetime.date.today()}-{counter}.txt"
+            allvalues[counter] = {"Value": sensor.value, "Voltage": sensor.voltage}
+            counter += 1
+            f = open(fileName, "a")
+            f.write(f"Value: {sensor.value}, Voltage: {sensor.voltage}\n")
+    except Exception as error:
+        raise error
+    except KeyboardInterrupt:
+        print('exiting script')
+        GPIO.cleanup()
+
+    time.sleep(WaitTime)
