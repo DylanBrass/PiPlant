@@ -28,5 +28,5 @@ def getCurrentValue():
 if __name__ == '__main__':
     app.run()
 
-    with daemon.DaemonContext():
-        moistureSensor.collectDataSensor()
+with daemon.DaemonContext():
+    moistureSensor.collectDataSensor()
