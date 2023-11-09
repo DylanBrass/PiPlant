@@ -17,7 +17,7 @@ function MainPage() {
           .get('http://'+window.location.hostname+':5000/getCurrentValue')
           .then(function (response) {
           
-            setRecentValues(response.data.allValues)
+            setRecentValues(response.data)
 
             console.log(recentValues)
           })
