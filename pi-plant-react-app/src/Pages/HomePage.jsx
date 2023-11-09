@@ -21,7 +21,7 @@ function MainPage() {
           .then(function (response) {
           
             setRecentValues(response.data.allValues)
-
+            console.log(response.data.allValues)
           })
           .catch((error) => {
             console.log(error);
@@ -74,14 +74,7 @@ function MainPage() {
         <button class="button" role="button" onClick={() => getRecent()}>Get Current Value</button>
       <h2>Recent Values</h2>
       {
-            Array.from(Array(recentValues).map((i) => {
-              console.log(recentValues)
-  
-              return <div>
-                  <h3>{i.sensorNum}</h3>
-                  <p>{i.sensorNum.values.Value}</p>
-               </div>  
-        }))
+          
       }
     </div>
     </div>
