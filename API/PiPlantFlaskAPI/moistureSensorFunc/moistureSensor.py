@@ -14,7 +14,6 @@ with open("cap_config.json") as json_data_file:
     config_data = json.load(json_data_file)
 # Create an ADS1115 ADC (16-bit) instance.
 
-
 # Create the I2C bus
 i2c = busio.I2C(board.SCL, board.SDA)
 
@@ -52,12 +51,15 @@ def getCurrentValueOfMoistureSensor():
 
 
 def startCollectDataThread():
-    threading.Thread(target=collectDataSensor()).start()
+    threading.Thread(target=runCollectDataThread()).start()
 
 
-def collectDataSensor():
-
+def runCollectDataThread():
     while True:
+        collectDataSensor(1)
+
+
+def collectDataSensor(WaitTime: int):
         allvalues = {}
         try:
             counter = 1
@@ -73,7 +75,4 @@ def collectDataSensor():
             print('exiting script')
             GPIO.cleanup()
 
-        time.sleep(10)
-
-
-
+        time.sleep(WaitTime)
