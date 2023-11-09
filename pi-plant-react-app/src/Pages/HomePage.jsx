@@ -38,7 +38,7 @@ function MainPage() {
     
   }
   useEffect(() => {
-    axios.get('http://'+window.location.hostname+':5000/numberOfLights')
+    axios.get('http://' + window.location.hostname + ':5000/numberOfLights')
     .then(function (response) {
       setNumberOfLights(response.data.numberOfLights)
     }).catch(function (error) {
@@ -68,7 +68,14 @@ function MainPage() {
       <button onClick={()=> getRecent()}>Get Current Value</button>
 
       <h2>Recent Values</h2>
-     
+      {
+        recentValues.allValues.map((value)=>{
+          return <div>
+              <h3>{value.sensorNum}</h3>
+              <p>{value.values.Value}</p>
+           </div>
+        })
+      }
     </div>
   );
 }
