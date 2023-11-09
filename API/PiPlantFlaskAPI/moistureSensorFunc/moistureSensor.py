@@ -2,7 +2,7 @@ from flask import jsonify
 import json
 import board
 import busio
-import adafruit_ads1x15.ads1015 as ADS
+import adafruit_ads1x15.ads1115 as ADS
 from adafruit_ads1x15.analog_in import AnalogIn
 
 with open("cap_config.json") as json_data_file:
@@ -14,7 +14,7 @@ with open("cap_config.json") as json_data_file:
 i2c = busio.I2C(board.SCL, board.SDA)
 
 # Create the ADC object using the I2C bus
-ads = ADS.ADS1015(i2c)
+ads = ADS.ADS1115(i2c)
 
 # Create single-ended input on channel 0
 sensor1 = AnalogIn(ads, ADS.P0)
