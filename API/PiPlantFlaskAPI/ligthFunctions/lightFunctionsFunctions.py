@@ -29,3 +29,5 @@ def toggleLight(light: int):
         return jsonify(lightStatus=allLights[lightPin])
 
     abort(400)
+
+

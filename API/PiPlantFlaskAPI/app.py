@@ -1,8 +1,9 @@
+from RPi import GPIO
 from flask import Flask
 from flask_cors import cross_origin
 import ligthFunctions.lightFunctionsFunctions
 from moistureSensorFunc import moistureSensor
-import daemon
+
 
 app = Flask(__name__)
 
@@ -19,14 +20,19 @@ def toggleLight(lightNumber: int):
     return ligthFunctions.lightFunctionsFunctions.toggleLight(int(lightNumber))
 
 
-@app.route('/getCurrentValue', methods=['GET'])
+@app.route('/getCurrentValues', methods=['GET'])
 @cross_origin()
 def getCurrentValue():
     return moistureSensor.getCurrentValueOfMoistureSensor()
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(threaded=True)
 
-with daemon.DaemonContext():
-    moistureSensor.collectDataSensor()
+
+try:
+    moistureSensor.startCollectDataThread()
+except KeyboardInterrupt:
+    print('exiting script')
+
+

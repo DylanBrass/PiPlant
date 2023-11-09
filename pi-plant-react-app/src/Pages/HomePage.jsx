@@ -9,22 +9,24 @@ import lightBulb1 from './light-bulb2.png'
 
 
 function MainPage() {
-  const [recentValues, setRecentValues] = useState({ allValues: [] })
-  const [selectedLight, setSelectedLight] = useState(1)
-  const [numberOfLights, setNumberOfLights] = useState(0)
+  const[recentValues, setRecentValues] = useState([])
+  const[selectedLight, setSelectedLight] = useState(1)
+  const[numberOfLights, setNumberOfLights] = useState(0)
   const [isLightOn, setIsLightOn] = useState(false);
 
-  const getRecent = () => {
+  
+  const getRecent = () =>{
     axios
-      .get('http://' + window.location.hostname + ':5000/getCurrentValue')
-      .then(function (response) {
-        console.log(response.data)
-        console.log(response)
-        setRecentValues(response.data.allValues)
-      })
-      .catch((error) => {
-        console.log(error);
-      })
+          .get('http://'+window.location.hostname+':5000/getCurrentValues')
+          .then(function (response) {
+          
+            setRecentValues(response.data.allValues)
+            console.log(response.data.allValues)
+            console.log(recentValues)
+          })
+          .catch((error) => {
+            console.log(error);
+        })
   }
 
   const toggleLight = () => {
@@ -42,13 +44,12 @@ function MainPage() {
   }
   useEffect(() => {
     axios.get('http://' + window.location.hostname + ':5000/numberOfLights')
-      .then(function (response) {
-        setNumberOfLights(response.data.numberOfLights)
-      }).catch(function (error) {
-        console.log(error);
-      })
-  }, [])
-
+    .then(function (response) {
+      setNumberOfLights(response.data.numberOfLights)
+    }).catch(function (error) {
+      console.log(error);
+    })
+  },[]) 
   return (
     <div>
       <Navbar />
@@ -72,10 +73,18 @@ function MainPage() {
         <img src={plant2} alt="Plant Image" className="img" />
 
         <button class="button" role="button" onClick={() => getRecent()}>Get Current Value</button>
-        <div className="recent-values">
-          <h2>Recent Values</h2>
-        </div>
-      </div>
+      <h2>Recent Values</h2>
+      {
+        recentValues.map((value)=>{
+          console.log(recentValues)
+
+          return <div>
+              <h3>{value.sensorNum}</h3>
+              <p>{value.sensorNum.values.Value}</p>
+           </div>
+        })
+      }
+    </div>
     </div>
   );
 }

@@ -1,14 +1,18 @@
+import datetime
+import time
+import RPi.GPIO as GPIO
+
 from flask import jsonify
 import json
 import board
 import busio
 import adafruit_ads1x15.ads1115 as ADS
 from adafruit_ads1x15.analog_in import AnalogIn
+import threading
 
 with open("cap_config.json") as json_data_file:
     config_data = json.load(json_data_file)
 # Create an ADS1115 ADC (16-bit) instance.
-
 
 # Create the I2C bus
 i2c = busio.I2C(board.SCL, board.SDA)
@@ -31,12 +35,12 @@ def percent_translation(raw_val):
 
 
 def getCurrentValueOfMoistureSensor():
-    allvalues = {}
+    allvalues = []
 
     try:
         counter = 1
         for sensor in allMoistureSensors:
-            allvalues[counter] = jsonify(output={"Value": sensor.value, "Voltage": sensor.voltage})
+            allvalues.append({"sensorNum": counter, "values": {"Value": sensor.value, "Voltage": sensor.voltage}})
             counter += 1
     except Exception as error:
         raise error
@@ -46,9 +50,36 @@ def getCurrentValueOfMoistureSensor():
     return jsonify(allValues=allvalues)
 
 
-def collectDataSensor():
+def startCollectDataThread():
+    try:
+        threading.Thread(target=runCollectDataThread).start()
+    except KeyboardInterrupt:
+        print('exiting script')
+
+
+def runCollectDataThread():
     while True:
-        print("hello")
+        try:
+            collectDataSensor(10)
+        except KeyboardInterrupt:
+            print('exiting script')
+            GPIO.cleanup()
 
 
+def collectDataSensor(WaitTime: int):
+    allvalues = {}
+    try:
+        counter = 1
+        for sensor in allMoistureSensors:
+            fileName = f"{datetime.date.today()}-{counter}.txt"
+            allvalues[counter] = {"Value": sensor.value, "Voltage": sensor.voltage}
+            counter += 1
+            f = open(fileName, "a")
+            f.write(f"Value: {sensor.value}, Voltage: {sensor.voltage}\n")
+    except Exception as error:
+        raise error
+    except KeyboardInterrupt:
+        print('exiting script')
+        GPIO.cleanup()
 
+    time.sleep(WaitTime)
