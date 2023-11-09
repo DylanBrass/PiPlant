@@ -71,7 +71,7 @@ function MainPage() {
 
       <h2>Recent Values</h2>
       {
-            Array.from(Array(numberOfLights).map((i) => {
+            Array.from(Array(recentValues).map((i) => {
               console.log(recentValues)
   
               return <div>
