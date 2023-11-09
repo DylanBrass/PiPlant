@@ -24,7 +24,7 @@ function Login() {
     <div>
       <NavigationBar />
       <div className="login-container">
-      <img src={plant1} alt="Image Description" className="login-box-image"/>
+      <img src={plant1} alt="Plant" className="login-box-image"/>
       
         <div className="login-box" style={{ height: '60%' }}>
           <h1 className="login-title">Login</h1>
