@@ -39,7 +39,7 @@ def getCurrentValueOfMoistureSensor():
 
     try:
         counter = 1
-      /home/pi/PiPlant/pi-plant-react-app/src  for sensor in allMoistureSensors:
+        for sensor in allMoistureSensors:
             allvalues.append({"sensorNum": counter, "values": {"Value": sensor.value, "Voltage": sensor.voltage}})
             counter += 1
     except Exception as error:
