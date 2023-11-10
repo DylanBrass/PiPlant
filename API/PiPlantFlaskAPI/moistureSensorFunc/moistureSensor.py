@@ -2,7 +2,7 @@ import datetime
 import time
 import RPi.GPIO as GPIO
 
-from flask import jsonify
+from flask import jsonify, abort
 import json
 import board
 import busio
@@ -52,8 +52,14 @@ def getCurrentValueOfMoistureSensor():
     return jsonify(allValues=allvalues)
 
 
-def getGraphData():
-    return {}
+def getGraphData(date, id):
+    try:
+        f = open(f"{date}-{id}.csv", "r")
+        s = f.readlines()
+    except OSError:
+        abort(404)
+
+    return s
 
 
 def startCollectDataThread():
@@ -74,7 +80,6 @@ def runCollectDataThread():
 
 
 def collectDataSensor(WaitTime: int):
-    allvalues = {}
     try:
         counter = 1
         for sensor in allMoistureSensors:
