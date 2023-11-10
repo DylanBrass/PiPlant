@@ -32,7 +32,7 @@ function MainPage() {
     axios.post('http://' + window.location.hostname + ':5000/toggleLight/' + selectedLight)
       .then(function (response) {
         console.log(response)
-        setIsLightOn(!isLightOn);
+        setIsLightOn(response.data.lightStatus);
       })
       .catch(function (error) {
         console.log(error)
