@@ -9,7 +9,7 @@ import lightBulb1 from './light-bulb2.png'
 
 
 function MainPage() {
-  const [recentValues, setRecentValues] = useState()
+  const [recentValues, setRecentValues] = useState([])
   const [selectedLight, setSelectedLight] = useState(1)
   const [numberOfLights, setNumberOfLights] = useState(0)
   const [isLightOn, setIsLightOn] = useState(false);
@@ -77,7 +77,7 @@ function MainPage() {
         <h2>Recent Values</h2>
         {
 
-          recentValues.array.forEach(element => {
+          recentValues.forEach(element => {
          
             console.log(element)
            
