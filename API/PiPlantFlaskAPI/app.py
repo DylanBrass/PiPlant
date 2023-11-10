@@ -25,10 +25,10 @@ def getCurrentValue():
     return moistureSensor.getCurrentValueOfMoistureSensor()
 
 
-@app.route("/getValuesForDay/<date>/<id>")
+@app.route("/getValuesForDay/<day>/<id>")
 @cross_origin()
-def getValuesForDay(date, id):
-    return moistureSensor.getGraphData(date,id)
+def getValuesForDay(day, id):
+    return {}
 
 
 if __name__ == '__main__':
