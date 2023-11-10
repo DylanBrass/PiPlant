@@ -10,8 +10,6 @@ import adafruit_ads1x15.ads1115 as ADS
 from adafruit_ads1x15.analog_in import AnalogIn
 import threading
 
-with open("cap_config.json") as json_data_file:
-    config_data = json.load(json_data_file)
 # Create an ADS1115 ADC (16-bit) instance.
 
 # Create the I2C bus
@@ -28,7 +26,9 @@ sensor2 = AnalogIn(ads, ADS.P1)
 allMoistureSensors = [sensor1, sensor2]
 
 
-def percent_translation(raw_val):
+def percent_translation(raw_val, sensorNum: int):
+    with open(f"cap_config_{sensorNum}.json") as json_data_file:
+        config_data = json.load(json_data_file)
     per_val = abs((raw_val - config_data["zero_saturation"]) / (
             config_data["full_saturation"] - config_data["zero_saturation"])) * 100
     return round(per_val, 3)
@@ -44,10 +44,16 @@ def getCurrentValueOfMoistureSensor():
             counter += 1
     except Exception as error:
         raise error
+        GPIO.cleanup()
     except KeyboardInterrupt:
         print('exiting script')
+        GPIO.cleanup()
 
     return jsonify(allValues=allvalues)
+
+
+def getGraphData():
+    return {}
 
 
 def startCollectDataThread():
@@ -55,6 +61,7 @@ def startCollectDataThread():
         threading.Thread(target=runCollectDataThread).start()
     except KeyboardInterrupt:
         print('exiting script')
+        GPIO.cleanup()
 
 
 def runCollectDataThread():
@@ -71,13 +78,13 @@ def collectDataSensor(WaitTime: int):
     try:
         counter = 1
         for sensor in allMoistureSensors:
-            fileName = f"{datetime.date.today()}-{counter}.txt"
-            allvalues[counter] = {"Value": sensor.value, "Voltage": sensor.voltage}
+            fileName = f"{datetime.date.today()}-{counter}.csv"
             counter += 1
             f = open(fileName, "a")
-            f.write(f"Value: {sensor.value}, Voltage: {sensor.voltage}\n")
+            f.write(f"{datetime.datetime.now().time().strftime('%I:%M %p')},{sensor.value},{sensor.voltage}\n")
     except Exception as error:
         raise error
+        GPIO.cleanup()
     except KeyboardInterrupt:
         print('exiting script')
         GPIO.cleanup()
