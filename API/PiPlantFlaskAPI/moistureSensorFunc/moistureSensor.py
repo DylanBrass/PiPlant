@@ -59,7 +59,7 @@ def getGraphData(date, id):
     except OSError:
         abort(404)
 
-    return s
+    return jsonify(s)
 
 
 def startCollectDataThread():
