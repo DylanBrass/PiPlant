@@ -78,7 +78,7 @@ def startCollectDataThread():
 def runCollectDataThread():
     while True:
         try:
-            collectDataSensor(10)
+            collectDataSensor(60)
         except KeyboardInterrupt:
             print('exiting script')
             GPIO.cleanup()
