@@ -77,7 +77,7 @@ function MainPage() {
         <h2>Recent Values</h2>
         {
 
-          recentValues.forEach(element => {
+          recentValues.map(element => {
          
             console.log(element)
             return <div>
@@ -85,7 +85,6 @@ function MainPage() {
                       <p>Value : {element.values.Value}</p>
                       <p>Value : {element.values.Voltage}</p>
                   </div>
-           
           })
         }
       </div>
