@@ -76,12 +76,7 @@ function MainPage() {
         <button class="button" role="button" onClick={() => getRecent()}>Get Current Value</button>
       <h2>Recent Values</h2>
       {
-          recentValues.map((value) => {
-            console.log(value)
-            return <div>
-             
-            </div>
-          })
+          console.log(recentValues)
       }
     </div>
     </div>
