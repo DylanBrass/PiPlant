@@ -9,23 +9,23 @@ import lightBulb1 from './light-bulb2.png'
 
 
 function MainPage() {
-  const[recentValues, setRecentValues] = useState()
-  const[selectedLight, setSelectedLight] = useState(1)
-  const[numberOfLights, setNumberOfLights] = useState(0)
+  const [recentValues, setRecentValues] = useState()
+  const [selectedLight, setSelectedLight] = useState(1)
+  const [numberOfLights, setNumberOfLights] = useState(0)
   const [isLightOn, setIsLightOn] = useState(false);
 
-  
-  const getRecent = () =>{
+
+  const getRecent = () => {
     axios
-          .get('http://'+window.location.hostname+':5000/getCurrentValues')
-          .then(function (response) {
-          
-            setRecentValues(response.data.allValues)
-            console.log(response.data.allValues)
-          })
-          .catch((error) => {
-            console.log(error);
-        })
+      .get('http://' + window.location.hostname + ':5000/getCurrentValues')
+      .then(function (response) {
+
+        setRecentValues(response.data.allValues)
+        console.log(response.data.allValues)
+      })
+      .catch((error) => {
+        console.log(error);
+      })
   }
 
   const toggleLight = () => {
@@ -42,15 +42,15 @@ function MainPage() {
   }
   useEffect(() => {
     axios.get('http://' + window.location.hostname + ':5000/numberOfLights')
-    .then(function (response) {
-      setNumberOfLights(response.data.numberOfLights)
-    }).catch(function (error) {
-      console.log(error);
-    })
+      .then(function (response) {
+        setNumberOfLights(response.data.numberOfLights)
+      }).catch(function (error) {
+        console.log(error);
+      })
 
     getRecent()
 
-  },[]) 
+  }, [])
   return (
     <div>
       <Navbar />
@@ -68,27 +68,29 @@ function MainPage() {
         </select>
 
         <button class="toggle-button" onClick={() => toggleLight()}>
-          <img src={isLightOn ? lightBulb2 : lightBulb1}  alt="Lightbulb Image" className="toggle-img" />
+          <img src={isLightOn ? lightBulb2 : lightBulb1} alt="Lightbulb Image" className="toggle-img" />
         </button>
 
         <img src={plant2} alt="Plant Image" className="img" />
 
         <button class="button" role="button" onClick={() => getRecent()}>Get Current Value</button>
-      <h2>Recent Values</h2>
-      {
-      Array.from(Array(recentValues).keys()).map((i) => {
-        if(recentValues[i] === undefined){
-          return <div></div>
+        <h2>Recent Values</h2>
+        {
+
+          Array.from(Array(recentValues)).map((i) => {
+            if (recentValues[i] === undefined) {
+              return <div></div>
+            }
+            console.log(recentValues[i])
+            console.log(i)
+            return <div>
+              <h3>Sensor {recentValues[i].sensorNum}</h3>
+              <p>Sensor: {recentValues[i].values.Value}</p>
+            </div>
+          })
+
         }
-        console.log(recentValues[i])
-        console.log(i)
-        return <div>
-                  <h3>Sensor {recentValues[i].sensorNum}</h3>
-                  <p>Sensor: {recentValues[i].values.Value}</p>
-                </div>
-      })      
-      }
-    </div>
+      </div>
     </div>
   );
 }
