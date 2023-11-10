@@ -1,6 +1,7 @@
 import React from 'react';
 import HomePage from './Pages/HomePage';
 import Login from './Pages/Login';
+import ChartPage from './Pages/ChartPage';
 import {
   BrowserRouter,
   Routes, // instead of "Switch"
