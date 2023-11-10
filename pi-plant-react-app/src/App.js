@@ -6,6 +6,7 @@ import {
   Routes, // instead of "Switch"
   Route,
 } from "react-router-dom";
+import ChartPage from './Pages/ChartPage';
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/chart" element={<ChartPage/>} />
       </Routes>
     </BrowserRouter>
   );

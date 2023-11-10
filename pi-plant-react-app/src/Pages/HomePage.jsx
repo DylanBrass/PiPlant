@@ -6,7 +6,6 @@ import { useEffect } from "react";
 import plant2 from './Plant2.png'
 import lightBulb2 from './light-bulb.png'
 import lightBulb1 from './light-bulb2.png'
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function MainPage() {
