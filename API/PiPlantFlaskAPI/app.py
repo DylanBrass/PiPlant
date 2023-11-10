@@ -28,7 +28,7 @@ def getCurrentValue():
 @app.route("/getValuesForDay/<day>/<id>")
 @cross_origin()
 def getValuesForDay(day, id):
-    return {}
+    return moistureSensor.getGraphData(day, id)
 
 
 if __name__ == '__main__':
