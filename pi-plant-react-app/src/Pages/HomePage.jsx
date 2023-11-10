@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import plant2 from './Plant2.png'
 import lightBulb2 from './light-bulb.png'
 import lightBulb1 from './light-bulb2.png'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function MainPage() {
@@ -56,50 +57,40 @@ function MainPage() {
       <Navbar />
 
       <h1>Home Page</h1>
+      <div className="plant-details-container">
+        <select
+          onChange={(e) => setSelectedLight(e.target.value)}
+          defaultValue={selectedLight}>
+          {
+            Array.from(Array(numberOfLights).keys()).map((i) => {
+              return <option value={i + 1}>{i + 1}</option>
+            })
+          }
+        </select>
 
-      <div className="container">
+        <button class="toggle-button" onClick={() => toggleLight()}>
+          <img src={isLightOn ? lightBulb2 : lightBulb1} alt="Lightbulb Image" className="toggle-img" />
+        </button>
 
-        <div className="row">
-          <div className="col-4">
-            <select
-              onChange={(e) => setSelectedLight(e.target.value)}
-              defaultValue={selectedLight}>
-              {
-                Array.from(Array(numberOfLights).keys()).map((i) => {
-                  return <option value={i + 1}>{i + 1}</option>
-                })
-              }
-            </select>
+        <img src={plant2} alt="Plant Image" className="img" />
+<div className="recent-values">
 
-            <button class="toggle-button" onClick={() => toggleLight()}>
-              <img src={isLightOn ? lightBulb2 : lightBulb1} alt="Lightbulb Image" className="toggle-img" />
-            </button>
+        <button class="button" role="button" onClick={() => getRecent()}>Get Current Value</button>
+        <h2>Recent Values</h2>
+        {
 
-          </div>
-          <div className="col-4">
-            <img src={plant2} alt="Plant Image" className="img" />
-          </div>
-          <div className="col-4">
-            <div className="recent-values">
-
-              <button class="button" role="button" onClick={() => getRecent()}>Get Current Value</button>
-              <h2>Recent Values</h2>
-              {
-
-                recentValues.map(element => {
-
-                  console.log(element)
-                  return <div>
-                    <h3>Sensor #{element.sensorNum}</h3>
-                    <p>Value : {element.values.Value}</p>
-                    <p>Value : {element.values.Voltage}</p>
+          recentValues.map(element => {
+         
+            console.log(element)
+            return <div>
+                      <h3>Sensor #{element.sensorNum}</h3>
+                      <p>Value : {element.values.Value}</p>
+                      <p>Value : {element.values.Voltage}</p>
                   </div>
-                })
-              }
-            </div>
-          </div>
-        </div>
+          })
+        }
       </div>
+    </div>
     </div>
   );
 }
