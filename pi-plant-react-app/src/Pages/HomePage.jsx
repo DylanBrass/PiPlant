@@ -9,7 +9,7 @@ import lightBulb1 from './light-bulb2.png'
 
 
 function MainPage() {
-  const[recentValues, setRecentValues] = useState([])
+  const[recentValues, setRecentValues] = useState()
   const[selectedLight, setSelectedLight] = useState(1)
   const[numberOfLights, setNumberOfLights] = useState(0)
   const [isLightOn, setIsLightOn] = useState(false);
@@ -33,7 +33,6 @@ function MainPage() {
       .then(function (response) {
         console.log(response)
         setIsLightOn(!isLightOn);
-        alert("Light is now " + response.data.lightStatus)
       })
       .catch(function (error) {
         console.log(error)
@@ -48,6 +47,9 @@ function MainPage() {
     }).catch(function (error) {
       console.log(error);
     })
+
+    getRecent()
+
   },[]) 
   return (
     <div>
@@ -74,7 +76,12 @@ function MainPage() {
         <button class="button" role="button" onClick={() => getRecent()}>Get Current Value</button>
       <h2>Recent Values</h2>
       {
-          
+          recentValues.map((value) => {
+            console.log(value)
+            return <div>
+             
+            </div>
+          })
       }
     </div>
     </div>
