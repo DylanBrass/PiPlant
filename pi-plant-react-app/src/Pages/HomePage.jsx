@@ -77,6 +77,9 @@ function MainPage() {
       <h2>Recent Values</h2>
       {
       Array.from(Array(recentValues).keys()).map((i) => {
+        if(recentValues[i] === undefined){
+          return <div></div>
+        }
         console.log(recentValues[i])
         console.log(i)
         return <div>
