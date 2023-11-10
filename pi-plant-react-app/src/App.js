@@ -7,7 +7,6 @@ import {
   Routes, // instead of "Switch"
   Route,
 } from "react-router-dom";
-import ChartPage from './Pages/ChartPage';
 
 const App = () => {
   return (
