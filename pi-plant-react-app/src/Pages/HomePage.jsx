@@ -80,6 +80,11 @@ function MainPage() {
           recentValues.forEach(element => {
          
             console.log(element)
+            return <div>
+                      <h3>Sensor #{element.sensorNum}</h3>
+                      <p>Value : {element.values.Value}</p>
+                      <p>Value : {element.values.Voltage}</p>
+                  </div>
            
           })
         }
