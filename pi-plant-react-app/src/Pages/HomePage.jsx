@@ -78,14 +78,9 @@ function MainPage() {
         {
 
           recentValues.array.forEach(element => {
-            if (element === undefined) {
-              return <div></div>
-            }
+         
             console.log(element)
-            return <div>
-              <h3>Sensor {element.sensorNum}</h3>
-              <p>Sensor: {element.values.Value}</p>
-            </div>
+           
           })
         }
       </div>
