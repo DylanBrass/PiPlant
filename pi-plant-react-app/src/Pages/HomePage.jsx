@@ -77,8 +77,12 @@ function MainPage() {
       <h2>Recent Values</h2>
       {
       Array.from(Array(recentValues).keys()).map((i) => {
-        console.log(recentValues)
+        console.log(recentValues[i])
         console.log(i)
+        return <div>
+                  <h3>Sensor {recentValues[i].sensorNum}</h3>
+                  <p>Sensor: {recentValues[i].values.Value}</p>
+                </div>
       })      
       }
     </div>
