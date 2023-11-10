@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import plant2 from './Plant2.png'
 import lightBulb2 from './light-bulb.png'
 import lightBulb1 from './light-bulb2.png'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function MainPage() {
@@ -72,6 +73,7 @@ function MainPage() {
         </button>
 
         <img src={plant2} alt="Plant Image" className="img" />
+<div className="recent-values">
 
         <button class="button" role="button" onClick={() => getRecent()}>Get Current Value</button>
         <h2>Recent Values</h2>
@@ -88,6 +90,7 @@ function MainPage() {
           })
         }
       </div>
+    </div>
     </div>
   );
 }
