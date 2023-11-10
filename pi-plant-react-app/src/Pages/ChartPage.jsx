@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts';
-
+import Navbar from './NavigationBar';
 
 
 function ChartPage() {
@@ -25,6 +25,8 @@ function ChartPage() {
 
     return (
         <div>
+            <Navbar />
+
             <LineChart width={500} height={300} data={data}>
                 <XAxis dataKey="time" />
                 <YAxis dataKey="value" />
