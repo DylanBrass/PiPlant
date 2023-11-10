@@ -77,18 +77,16 @@ function MainPage() {
         <h2>Recent Values</h2>
         {
 
-          Array.from(Array(recentValues)).map((i) => {
-            if (recentValues[i] === undefined) {
+          recentValues.array.forEach(element => {
+            if (element === undefined) {
               return <div></div>
             }
-            console.log(recentValues[i])
-            console.log(i)
+            console.log(element)
             return <div>
-              <h3>Sensor {recentValues[i].sensorNum}</h3>
-              <p>Sensor: {recentValues[i].values.Value}</p>
+              <h3>Sensor {element.sensorNum}</h3>
+              <p>Sensor: {element.values.Value}</p>
             </div>
           })
-
         }
       </div>
     </div>
