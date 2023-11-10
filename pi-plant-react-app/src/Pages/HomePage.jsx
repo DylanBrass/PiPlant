@@ -55,7 +55,6 @@ function MainPage() {
 
         <h1>My Plant Health</h1>
         <div className="row">
-          <div className="col section">
             <div className="col">
               <h2>Lights</h2>
               <p>Please select the light you wish to toggle</p>
@@ -83,13 +82,13 @@ function MainPage() {
                 </div>
               ))}
             </div>
-          </div>
-          <div className="col">
+            <div className="col">
             <img src={plant2} alt="Plant Image" className="img" />
+          </div>
           </div>
         </div>
       </div>
-    </div>
+    
   );
 }
 
