@@ -43,6 +43,10 @@ function ChartPage() {
         fetchData()
     },[]);
 
+    useEffect(() => {
+        fetchData()
+    }, [selectedDate, selectedSensor])
+
 
     return (
         <div>
