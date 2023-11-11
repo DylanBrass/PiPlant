@@ -9,7 +9,7 @@ function ChartPage() {
 
     const [data, setData] = useState([])
 
-    const [selectedDate, setSelectedDate] = useState(new Date().toLocaleDateString().replaceAll('/', '-'));
+    const [selectedDate, setSelectedDate] = useState(new Date().toLocaleDateString('fr-CA').replaceAll('/', '-'));
 
     const [selectedSensor, setSelectedSensor] = useState(1);
 
@@ -53,7 +53,7 @@ function ChartPage() {
                 <Line type="monotone" dataKey="value" stroke="#82ca9d" />
             </LineChart>
 
-            <DatePicker selected={new Date()} onChange={(date) => console.log(date)} />
+            <DatePicker selected={new Date().toLocaleDateString('fr-CA')} onChange={(date) => console.log(date)} />
             <select
                   onChange={(e) => setSelectedSensor(e.target.value)}
                   defaultValue={selectedSensor}>
