@@ -9,7 +9,7 @@ function ChartPage() {
 
     const [data, setData] = useState([])
 
-    const [selectedDate, setSelectedDate] = useState(new Date.toLocaleDateString().replace(/\//g, '-'));
+    const [selectedDate, setSelectedDate] = useState(new Date().toLocaleDateString().replaceAll('/', '-'));
 
     const [selectedSensor, setSelectedSensor] = useState(1);
 
