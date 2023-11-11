@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts';
 import Navbar from './NavigationBar';
 import DatePicker from "react-datepicker";
+import 'react-datepicker/dist/react-datepicker.css'
 
 function ChartPage() {
 
@@ -53,12 +54,10 @@ function ChartPage() {
                 <Line type="monotone" dataKey="value" stroke="#82ca9d" />
             </LineChart>
             <DatePicker
-                wrapperClassName="datePicker"
+                showIcon
                 dateFormat="yyyy-MM-dd"
                 selected={new Date()}
                 onChange={(date) => setSelectedDate(date.toLocaleDateString('fr-CA'))}
-                // Add styles to the DatePicker
-                style={{ marginTop: '10px', marginBottom: '10px', width: '100%' }}
             />
             <select
                   onChange={(e) => setSelectedSensor(e.target.value)}
