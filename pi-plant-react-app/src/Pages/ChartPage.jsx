@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts';
 import Navbar from './NavigationBar';
 import DatePicker from "react-datepicker";
-
+import './ChartPage.css';
 
 function ChartPage() {
 
@@ -14,7 +14,7 @@ function ChartPage() {
     const [selectedSensor, setSelectedSensor] = useState(1);
 
     const numberOfSensors = () => {
-        axios.get('http://' + window.location.hostname + ':5000/numberOfSensors')
+        axios.get('http://' + window.location.hostname + ':5000/numberOfMoistureSensors')
         .then(function (response) {
             console.log(response.data.numberOfSensors)
             return response.data.numberOfSensors
@@ -53,7 +53,8 @@ function ChartPage() {
                 <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
                 <Line type="monotone" dataKey="value" stroke="#82ca9d" />
             </LineChart>
-            <DatePicker dateFormatCalendar='yyyy-MM-dd' wrapperClassName="datePicker" selected={new Date()} onChange={(date) => setSelectedDate(date.toLocaleDateString('fr-CA'))} />
+            <DatePicker wrapperClassName="datePicker" dateFormat="yyyy-MM-dd" selected={new Date()} onChange={(date) => setSelectedDate(date.toLocaleDateString('fr-CA'))}>
+            </DatePicker>
             <select
                   onChange={(e) => setSelectedSensor(e.target.value)}
                   defaultValue={selectedSensor}>
