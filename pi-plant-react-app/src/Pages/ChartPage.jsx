@@ -13,7 +13,7 @@ function ChartPage() {
 
     const [selectedSensor, setSelectedSensor] = useState(1);
 
-    const [numberOfSensors, setNumberOfSensors] = useState(0);
+    const [numberOfSensors, setNumberOfSensors] = useState(2);
 
     const numberOfSensorsFunc = () => {
         axios.get('http://' + window.location.hostname + ':5000/numberOfMoistureSensors')

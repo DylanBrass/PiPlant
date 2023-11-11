@@ -39,6 +39,7 @@ function MainPage() {
   useEffect(() => {
     axios.get('http://' + window.location.hostname + ':5000/numberOfLights')
       .then(function (response) {
+        console.log(response.data.numberOfLights);
         setNumberOfLights(response.data.numberOfLights);
       }).catch(function (error) {
         console.log(error);
