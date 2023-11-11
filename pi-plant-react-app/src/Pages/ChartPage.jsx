@@ -37,6 +37,7 @@ function ChartPage() {
     }
     useEffect(() => {
         fetchData()
+        numberOfSensors()
     },[]);
 
 
@@ -52,8 +53,7 @@ function ChartPage() {
                 <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
                 <Line type="monotone" dataKey="value" stroke="#82ca9d" />
             </LineChart>
-
-            <DatePicker selected={new Date()} onChange={(date) => console.log(date)} />
+            <DatePicker dateFormatCalendar='yyyy-MM-dd' wrapperClassName="datePicker" selected={new Date()} onChange={(date) => setSelectedDate(date.toLocaleDateString('fr-CA'))} />
             <select
                   onChange={(e) => setSelectedSensor(e.target.value)}
                   defaultValue={selectedSensor}>
