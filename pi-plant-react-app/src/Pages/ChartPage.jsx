@@ -38,8 +38,9 @@ function ChartPage() {
         })
     }
     useEffect(() => {
-        fetchData()
         numberOfSensorsFunc()
+
+        fetchData()
     },[]);
 
 
@@ -60,7 +61,8 @@ function ChartPage() {
             <DatePicker
                 showIcon
                 dateFormat="yyyy-MM-dd"
-                selected={new Date()}
+                dateFormatCalendar='yyyy-MM-dd'
+                selected={selectedDate}
                 onChange={(date) => setSelectedDate(date.toLocaleDateString('fr-CA'))}
             />
             <select
