@@ -34,12 +34,12 @@ function ChartPage() {
         })
         .catch(function (error) {
             console.log(error)
+            setData([])
             alert("No data for this date")
         })
     }
     useEffect(() => {
         numberOfSensorsFunc()
-
         fetchData()
     },[]);
 
