@@ -67,7 +67,7 @@ function ChartPage() {
             <select
                   onChange={(e) => setSelectedSensor(e.target.value)}
                   defaultValue={selectedSensor}>
-                  {Array.from(Array(numberOfSensors)).map((i) => (
+                  {Array.from(Array(numberOfSensors).keys()).map((i) => (
                     <option value={i + 1} key={i + 1}>{i + 1}</option>
                   ))}
                 </select>
