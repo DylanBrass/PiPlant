@@ -62,7 +62,7 @@ function MainPage() {
                 <select
                   onChange={(e) => setSelectedLight(e.target.value)}
                   defaultValue={selectedLight}>
-                  {Array.from(Array(numberOfLights).keys()).map((i) => (
+                  {Array.from(Array(numberOfLights)).map((i) => (
                     <option value={i + 1} key={i + 1}>{i + 1}</option>
                   ))}
                 </select>

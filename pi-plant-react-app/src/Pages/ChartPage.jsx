@@ -61,7 +61,6 @@ function ChartPage() {
             <DatePicker
                 showIcon
                 dateFormat="yyyy-MM-dd"
-                dateFormatCalendar='yyyy-MM-dd'
                 selected={selectedDate}
                 onChange={(date) => setSelectedDate(date.toLocaleDateString('fr-CA'))}
             />
