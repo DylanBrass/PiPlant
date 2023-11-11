@@ -13,11 +13,13 @@ function ChartPage() {
 
     const [selectedSensor, setSelectedSensor] = useState(1);
 
-    const numberOfSensors = () => {
+    const [numberOfSensors, setNumberOfSensors] = useState(0);
+
+    const numberOfSensorsFunc = () => {
         axios.get('http://' + window.location.hostname + ':5000/numberOfMoistureSensors')
         .then(function (response) {
             console.log(response.data.numberOfSensors)
-            return response.data.numberOfSensors
+            setNumberOfSensors(response.data.numberOfSensors)
         })
         .catch(function (error) {
             console.log(error)
@@ -37,7 +39,7 @@ function ChartPage() {
     }
     useEffect(() => {
         fetchData()
-        numberOfSensors()
+        numberOfSensorsFunc()
     },[]);
 
 
@@ -53,6 +55,8 @@ function ChartPage() {
                 <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
                 <Line type="monotone" dataKey="value" stroke="#82ca9d" />
             </LineChart>
+
+            <br/>
             <DatePicker
                 showIcon
                 dateFormat="yyyy-MM-dd"
