@@ -9,7 +9,7 @@ function ChartPage() {
 
     const [data, setData] = useState([])
 
-    const [selectedDate, setSelectedDate] = useState(new Date().format("yyyy-MM-dd"));
+    const [selectedDate, setSelectedDate] = useState(new Date());
 
     const fetchData = () => {
         axios.get('http://' + window.location.hostname + ':5000/getValuesForDay/2023-11-10/1')
@@ -30,7 +30,7 @@ function ChartPage() {
         <div>
             <Navbar />
             <h1>Chart Page</h1>
-            <DatePicker selected={new Date()} onChange={(date) => console.log(date.format("yyyy-MM-dd"))} />
+            <DatePicker selected={new Date()} onChange={(date) => setSelectedDate(date)} />
             
             
             <LineChart width={500} height={300} data={data}>
