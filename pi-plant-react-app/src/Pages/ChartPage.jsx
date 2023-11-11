@@ -9,7 +9,7 @@ function ChartPage() {
 
     const [data, setData] = useState([])
 
-    const [selectedDate, setSelectedDate] = useState(new Date().toLocaleDateString('fr-CA').replaceAll('/', '-'));
+    const [selectedDate, setSelectedDate] = useState(new Date());
 
     const [selectedSensor, setSelectedSensor] = useState(1);
 
@@ -27,7 +27,7 @@ function ChartPage() {
     }
 
     const fetchData = () => {
-        axios.get('http://' + window.location.hostname + ':5000/getValuesForDay/' + selectedDate + '/' + selectedSensor)
+        axios.get('http://' + window.location.hostname + ':5000/getValuesForDay/' + selectedDate.toLocaleDateString('fr-CA').replaceAll('/', '-') + '/' + selectedSensor)
         .then(function (response) {
             console.log(response.data.values)
             setData(response.data.values)
@@ -62,12 +62,12 @@ function ChartPage() {
                 showIcon
                 dateFormat="yyyy-MM-dd"
                 selected={selectedDate}
-                onChange={(date) => setSelectedDate(date.toLocaleDateString('fr-CA'))}
+                onChange={(date) => setSelectedDate(date)}
             />
             <select
                   onChange={(e) => setSelectedSensor(e.target.value)}
                   defaultValue={selectedSensor}>
-                  {Array.from(Array(numberOfSensors).keys()).map((i) => (
+                  {Array.from(Array(numberOfSensors)).map((i) => (
                     <option value={i + 1} key={i + 1}>{i + 1}</option>
                   ))}
                 </select>
