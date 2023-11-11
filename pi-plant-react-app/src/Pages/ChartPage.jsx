@@ -11,14 +11,28 @@ function ChartPage() {
 
     const [selectedDate, setSelectedDate] = useState(new Date());
 
+    const [selectedSensor, setSelectedSensor] = useState(1);
+
+    const numberOfSensors = () => {
+        axios.get('http://' + window.location.hostname + ':5000/numberOfSensors')
+        .then(function (response) {
+            console.log(response.data.numberOfSensors)
+            return response.data.numberOfSensors
+        })
+        .catch(function (error) {
+            console.log(error)
+        })
+    }
+
     const fetchData = () => {
-        axios.get('http://' + window.location.hostname + ':5000/getValuesForDay/2023-11-10/1')
+        axios.get('http://' + window.location.hostname + ':5000/getValuesForDay/' + selectedDate + '/' + selectedSensor)
         .then(function (response) {
             console.log(response.data.values)
             setData(response.data.values)
         })
         .catch(function (error) {
             console.log(error)
+            alert("No data for this date")
         })
     }
     useEffect(() => {
@@ -30,7 +44,6 @@ function ChartPage() {
         <div>
             <Navbar />
             <h1>Chart Page</h1>
-            <DatePicker selected={new Date()} onChange={(date) => setSelectedDate(date)} />
             
             
             <LineChart width={500} height={300} data={data}>
@@ -39,6 +52,15 @@ function ChartPage() {
                 <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
                 <Line type="monotone" dataKey="value" stroke="#82ca9d" />
             </LineChart>
+
+            <DatePicker selected={new Date()} onChange={(date) => setSelectedDate(date)} />
+            <select
+                  onChange={(e) => setSelectedSensor(e.target.value)}
+                  defaultValue={selectedSensor}>
+                  {Array.from(Array(numberOfSensors).keys()).map((i) => (
+                    <option value={i + 1} key={i + 1}>{i + 1}</option>
+                  ))}
+                </select>
         </div>
     )
 }

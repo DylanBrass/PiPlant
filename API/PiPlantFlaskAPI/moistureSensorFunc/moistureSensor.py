@@ -26,6 +26,10 @@ sensor2 = AnalogIn(ads, ADS.P1)
 allMoistureSensors = [sensor1, sensor2]
 
 
+def numberOfMoistureSensors():
+    return jsonify(numberOfSensors=len(allMoistureSensors))
+
+
 def percent_translation(raw_val, sensorNum: int):
     with open(f"cap_config_{sensorNum}.json") as json_data_file:
         config_data = json.load(json_data_file)

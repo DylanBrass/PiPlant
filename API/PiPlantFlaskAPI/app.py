@@ -12,6 +12,10 @@ app = Flask(__name__)
 def numberOfLights():
     return ligthFunctions.lightFunctionsFunctions.numberOfLights()
 
+@app.route("/numberOfMoistureSensors")
+@cross_origin()
+def numberOfMoistureSensors():
+    return moistureSensor.numberOfMoistureSensors()
 
 @app.route('/toggleLight/<lightNumber>', methods=['POST'])
 @cross_origin()
