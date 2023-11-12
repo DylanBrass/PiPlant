@@ -11,6 +11,7 @@ allLights = {LED1_PIN: led1State, LED2_PIN: led2State}
 
 
 def main():
+    print("Starting lightFunctions")
     GPIO.setmode(GPIO.BCM)
 
     for pin in allLights.keys():
