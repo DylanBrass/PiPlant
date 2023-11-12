@@ -41,7 +41,7 @@ def getCurrentValueOfMoistureSensor():
 
     counter = 1
     for sensor in allMoistureSensors:
-        allvalues.append({"sensorNum": counter, "values": {"Value": percent_translation(sensor.value, counter - 1), "Voltage": sensor.voltage}})
+        allvalues.append({"sensorNum": counter, "values": {"Value": percent_translation(sensor.value, counter), "Voltage": sensor.voltage}})
         counter += 1
 
     return jsonify(allValues=allvalues)
@@ -80,9 +80,9 @@ def collectDataSensor(WaitTime: int):
         for sensor in allMoistureSensors:
 
             fileName = f"{local_time.date()}-{counter}.csv"
-            counter += 1
             with open(fileName, "a") as f:
                 f.write(f"{local_time.strftime('%I:%M %p')},{percent_translation(sensor.value, counter)},{sensor.voltage}\n")
+            counter += 1
 
     except Exception as error:
         raise error
