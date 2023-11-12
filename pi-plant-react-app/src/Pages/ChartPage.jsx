@@ -58,8 +58,8 @@ function ChartPage() {
                 <div className='chart'>
                 <LineChart width={700} height={500} data={data}>
                     <XAxis dataKey="time" />
-                    <YAxis dataKey="value" />
-                    <CartesianGrid stroke="#eee" strokeDasharray="5 5"/>
+                    <YAxis dataKey="value" type="number"  domain={['auto', 'auto']}/>
+                    <CartesianGrid stroke="#eee" strokeDasharray="1 1"/>
                     <Line type="monotone" dataKey="value" stroke="#82ca9d" />
                 </LineChart>
                 </div>
