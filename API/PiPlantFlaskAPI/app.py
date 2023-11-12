@@ -1,7 +1,7 @@
 from RPi import GPIO
 from flask import Flask
 from flask_cors import cross_origin
-import ligthFunctions.lightFunctionsFunctions
+from ligthFunctions import lightFunctionsFunctions
 from moistureSensorFunc import moistureSensor
 
 GPIO.setwarnings(False)
@@ -14,7 +14,7 @@ app = Flask(__name__)
 @app.route('/numberOfLights')
 @cross_origin()
 def numberOfLights():
-    return ligthFunctions.lightFunctionsFunctions.numberOfLights()
+    return lightFunctionsFunctions.numberOfLights()
 
 
 @app.route("/numberOfMoistureSensors")
@@ -26,7 +26,7 @@ def numberOfMoistureSensors():
 @app.route('/toggleLight/<lightNumber>', methods=['POST'])
 @cross_origin()
 def toggleLight(lightNumber: int):
-    return ligthFunctions.lightFunctionsFunctions.toggleLight(int(lightNumber))
+    return lightFunctionsFunctions.toggleLight(int(lightNumber))
 
 
 @app.route('/getCurrentValues', methods=['GET'])

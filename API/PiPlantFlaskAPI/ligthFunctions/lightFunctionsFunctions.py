@@ -21,7 +21,6 @@ def numberOfLights():
 
 
 def toggleLight(light: int):
-    GPIO.setmode(GPIO.BCM)
 
     global allLights
     if light - 1 < len(allLights):
