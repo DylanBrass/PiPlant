@@ -41,7 +41,7 @@ def getCurrentValueOfMoistureSensor():
 
     counter = 1
     for sensor in allMoistureSensors:
-        allvalues.append({"sensorNum": counter, "values": {"Value": percent_translation(sensor.value, counter), "Voltage": sensor.voltage}})
+        allvalues.append({"sensorNum": counter, "values": {"Value": percent_translation(sensor.value, counter - 1), "Voltage": sensor.voltage}})
         counter += 1
 
     return jsonify(allValues=allvalues)
