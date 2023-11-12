@@ -11,7 +11,6 @@ allLights = {LED1_PIN: led1State, LED2_PIN: led2State}
 
 GPIO.setmode(GPIO.BCM)
 
-
 for pin in allLights.keys():
     GPIO.setup(pin, GPIO.OUT)
     GPIO.output(LED1_PIN, allLights.get(pin))
@@ -22,6 +21,8 @@ def numberOfLights():
 
 
 def toggleLight(light: int):
+    GPIO.setmode(GPIO.BCM)
+
     global allLights
     if light - 1 < len(allLights):
         lightPin = list(allLights.keys())[light - 1]

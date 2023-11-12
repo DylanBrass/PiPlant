@@ -4,6 +4,8 @@ from flask_cors import cross_origin
 import ligthFunctions.lightFunctionsFunctions
 from moistureSensorFunc import moistureSensor
 
+GPIO.setwarnings(False)
+GPIO.cleanup()
 GPIO.setmode(GPIO.BCM)
 
 app = Flask(__name__)
