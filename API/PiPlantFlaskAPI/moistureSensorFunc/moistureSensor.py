@@ -1,5 +1,4 @@
 import datetime
-import os
 import RPi.GPIO as GPIO
 import pytz
 from flask import jsonify, abort
@@ -9,8 +8,7 @@ import busio
 import adafruit_ads1x15.ads1115 as ADS
 from adafruit_ads1x15.analog_in import AnalogIn
 import threading
-os.environ['TZ'] = 'US/Pacific'
-datetime.tzinfo = datetime.timezone()
+
 # Create an ADS1115 ADC (16-bit) instance.
 
 # Create the I2C bus
