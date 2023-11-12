@@ -75,11 +75,10 @@ def collectDataSensor(WaitTime: int):
     try:
         tz = pytz.timezone('America/Montreal')
         local_time = datetime.datetime.now(tz)
-        local_time = local_time - datetime.timedelta(days=1)
 
         counter = 1
         for sensor in allMoistureSensors:
-            fileName = f"{local_time.date()}-{counter}.csv"
+            fileName = f"{local_time.date() - datetime.timedelta(days=1)}-{counter}.csv"
             counter += 1
             with open(fileName, "a") as f:
                 f.write(f"{local_time.strftime('%I:%M %p')},{sensor.value},{sensor.voltage}\n")
