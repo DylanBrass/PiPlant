@@ -1,6 +1,7 @@
 // NavigationBar.js
 import React from 'react';
 import { Link } from 'react-router-dom';
+import logo from "./logo.png"
 import './NavigationBar.css'; // Import the CSS file
 
 const NavigationBar = () => {
@@ -9,12 +10,10 @@ const NavigationBar = () => {
       <ul>
         <li>
           <Link to="/" className="app-name">
-            PiPlant
+          <img src={logo}  atl="logo"/>
           </Link>
         </li>
-        <li>
           <Link to="/">Home</Link>
-        </li>
         <li>
           <Link to="/login">Login</Link>
         </li>

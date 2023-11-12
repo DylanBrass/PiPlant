@@ -1,6 +1,6 @@
 /* NavigationBar.css */
 nav {
-  background-color: #333;
+  background-color: #528265;
   padding: 10px 0;
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
 }
@@ -16,15 +16,16 @@ ul {
 }
 
 li {
-  font-size: 20px;
+  font-size: 40px;
   margin: 0 20px;
 }
 
 a {
   text-decoration: none !important; /* Remove underline */
-  color: #a2c4ac;
+  color: #688a76;
   font-weight: bold;
   transition: color 0.2s;
+  color:aqua;
 }
 
 a:hover {
@@ -35,4 +36,11 @@ a:hover {
   font-size: 48px;
   font-weight: bold;
   color: #a2c4ac; /* Different color for the company name */
+}
+
+img{
+  width: 200px;
+  border-style: solid;
+  border-color:white;
+  padding:20px;
 }
