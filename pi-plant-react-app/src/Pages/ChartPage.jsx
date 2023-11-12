@@ -59,7 +59,7 @@ function ChartPage() {
                 <LineChart width={700} height={500} data={data}>
                     <XAxis dataKey="time"/>
                     <YAxis dataKey="value" type="number"  domain={[0, 'auto']}/>
-                    <CartesianGrid stroke="#eee" strokeDasharray="3,3"/>
+                    <CartesianGrid stroke="#eee" strokeDasharray="5 5"/>
                     <Line type="monotone" dataKey="value" stroke="#82ca9d" />
                 </LineChart>
                 </div>
