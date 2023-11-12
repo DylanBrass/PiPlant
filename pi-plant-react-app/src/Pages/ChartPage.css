@@ -7,8 +7,9 @@
  }
 
 .chart{
-    margin-left: 23%;
     padding-top: 10px;
+    background-color: white;
+    color: black;
 }
 
 .datepicker{
