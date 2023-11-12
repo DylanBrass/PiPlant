@@ -89,24 +89,23 @@ def runCollectDataThread():
 
 
 def collectDataSensor(WaitTime: int):
-    date_time = datetime.datetime.now()
-
-    tz = pytz.timezone('America/Montreal')
-    local_time = tz.localize(date_time)
-
     try:
+        tz = pytz.timezone('America/Montreal')
+        local_time = datetime.datetime.now(tz)
+
         counter = 1
         for sensor in allMoistureSensors:
             fileName = f"{local_time.date().today()}-{counter}.csv"
             counter += 1
-            f = open(fileName, "a")
+            with open(fileName, "a") as f:
+                f.write(f"{local_time.strftime('%I:%M %p')},{sensor.value},{sensor.voltage}\n")
 
-            f.write(f"{local_time.time().strftime('%I:%M %p')},{sensor.value},{sensor.voltage}\n")
     except Exception as error:
         raise error
-        GPIO.cleanup()
     except KeyboardInterrupt:
         print('exiting script')
+    finally:
         GPIO.cleanup()
 
     time.sleep(WaitTime)
+
