@@ -3,6 +3,7 @@ import './HomePage.css';
 import axios from 'axios';
 import { useState, useEffect } from "react";
 import plant2 from './Plant2.png';
+import gradientBackground from './gradientBackground.avif';
 import lightBulb2 from './light-bulb.png';
 import lightBulb1 from './light-bulb2.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -49,8 +50,9 @@ function MainPage() {
   }, []);
 
   return (
+
     <div>
-      <Navbar />
+   <Navbar />
 
       <div className="container">
 
@@ -89,6 +91,7 @@ function MainPage() {
           </div>
         </div>
       </div>
+      
     
   );
 }

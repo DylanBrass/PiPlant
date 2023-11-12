@@ -115,3 +115,27 @@ h2 {
     align-items: stretch; /* Reset to the default stretch alignment */
     justify-content: flex-start; /* Reset to the default flex-start alignment */
 }
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('gradientBackground.avif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; 
+}
+
+.divBody {
+    min-height: 100vh; 
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    flex-grow: 1; 
+}
+
+html, body, #root {
+    height: 100%;
+}

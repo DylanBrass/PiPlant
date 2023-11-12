@@ -53,6 +53,7 @@ function ChartPage() {
         <div>
             <Navbar />
             <h1>Chart Page</h1>
+<<<<<<< Updated upstream
             
           
                 <div className='chart'>
@@ -65,6 +66,18 @@ function ChartPage() {
                 </div>
             
             
+=======
+            <div className='chart'>
+            <LineChart width={700} height={500} data={data}>
+                <XAxis dataKey="time" />
+                <YAxis dataKey="value" />
+                <CartesianGrid stroke="#eee" strokeDasharray="5 5"/>
+                <Line type="monotone" dataKey="value" stroke="#82ca9d" />
+            </LineChart>
+            </div>
+
+
+>>>>>>> Stashed changes
             <br/>
             <div className='datepicker'>
             <DatePicker
