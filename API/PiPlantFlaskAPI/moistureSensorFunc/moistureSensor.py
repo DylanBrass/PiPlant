@@ -98,7 +98,7 @@ def collectDataSensor(WaitTime: int):
 
             date_time = datetime.datetime.now()
 
-            tz = pytz.timezone('Asia/Kolkata')
+            tz = pytz.timezone('America/Montreal')
 
             local_time = tz.localize(date_time)
             f.write(f"{local_time.time().strftime('%I:%M %p')},{sensor.value},{sensor.voltage}\n")
