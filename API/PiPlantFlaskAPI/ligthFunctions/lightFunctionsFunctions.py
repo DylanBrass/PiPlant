@@ -21,7 +21,7 @@ def toggleLight(light: int):
 
     for pin in allLights.keys():
         GPIO.setup(pin, GPIO.OUT)
-        GPIO.output(LED1_PIN, allLights.get(pin))
+        GPIO.output(pin, allLights.get(pin))
 
     if light - 1 < len(allLights):
         lightPin = list(allLights.keys())[light - 1]
