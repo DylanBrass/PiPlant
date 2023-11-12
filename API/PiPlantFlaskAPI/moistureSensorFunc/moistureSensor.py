@@ -1,7 +1,7 @@
 import datetime
-import time
+import os
 import RPi.GPIO as GPIO
-
+import pytz
 from flask import jsonify, abort
 import json
 import board
@@ -9,7 +9,8 @@ import busio
 import adafruit_ads1x15.ads1115 as ADS
 from adafruit_ads1x15.analog_in import AnalogIn
 import threading
-
+os.environ['TZ'] = 'US/Pacific'
+datetime.tzinfo = datetime.timezone()
 # Create an ADS1115 ADC (16-bit) instance.
 
 # Create the I2C bus
@@ -95,7 +96,13 @@ def collectDataSensor(WaitTime: int):
             fileName = f"{datetime.date.today()}-{counter}.csv"
             counter += 1
             f = open(fileName, "a")
-            f.write(f"{datetime.datetime.now().time().strftime('%I:%M %p')},{sensor.value},{sensor.voltage}\n")
+
+            time = datetime.datetime.now()
+
+            tz = pytz.timezone('Asia/Kolkata')
+
+            local_time = tz.localize(time)
+            f.write(f"{local_time.time().strftime('%I:%M %p')},{sensor.value},{sensor.voltage}\n")
     except Exception as error:
         raise error
         GPIO.cleanup()
