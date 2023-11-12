@@ -10,7 +10,6 @@ import adafruit_ads1x15.ads1115 as ADS
 from adafruit_ads1x15.analog_in import AnalogIn
 import threading
 
-# Create an ADS1115 ADC (16-bit) instance.
 
 # Create the I2C bus
 i2c = busio.I2C(board.SCL, board.SDA)
@@ -41,17 +40,10 @@ def percent_translation(raw_val, sensorNum: int):
 def getCurrentValueOfMoistureSensor():
     allvalues = []
 
-    try:
-        counter = 1
-        for sensor in allMoistureSensors:
-            allvalues.append({"sensorNum": counter, "values": {"Value": sensor.value, "Voltage": sensor.voltage}})
-            counter += 1
-    except Exception as error:
-        raise error
-        GPIO.cleanup()
-    except KeyboardInterrupt:
-        print('exiting script')
-        GPIO.cleanup()
+    counter = 1
+    for sensor in allMoistureSensors:
+         allvalues.append({"sensorNum": counter, "values": {"Value": sensor.value, "Voltage": sensor.voltage}})
+         counter += 1
 
     return jsonify(allValues=allvalues)
 
@@ -72,25 +64,18 @@ def getGraphData(date, sensorId):
 
 
 def startCollectDataThread():
-    try:
-        threading.Thread(target=runCollectDataThread).start()
-    except KeyboardInterrupt:
-        print('exiting script')
-        GPIO.cleanup()
+    threading.Thread(target=runCollectDataThread).start()
+
 
 
 def runCollectDataThread():
     while True:
-        try:
-            collectDataSensor(60)
-        except KeyboardInterrupt:
-            print('exiting script')
-            GPIO.cleanup()
+        collectDataSensor(60)
 
 
 def collectDataSensor(WaitTime: int):
     try:
-        tz = pytz.timezone('America/New_York')
+        tz = pytz.timezone('America/Montreal')
         local_time = datetime.datetime.now(tz)
 
         counter = 1
@@ -104,8 +89,7 @@ def collectDataSensor(WaitTime: int):
         raise error
     except KeyboardInterrupt:
         print('exiting script')
-    finally:
-        GPIO.cleanup()
+
 
     time.sleep(WaitTime)
 
