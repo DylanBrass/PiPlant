@@ -89,18 +89,17 @@ def runCollectDataThread():
 
 
 def collectDataSensor(WaitTime: int):
+    date_time = datetime.datetime
+
+    tz = pytz.timezone('America/Montreal')
     try:
         counter = 1
         for sensor in allMoistureSensors:
-            fileName = f"{datetime.date.today()}-{counter}.csv"
+            fileName = f"{date_time.date().today()}-{counter}.csv"
             counter += 1
             f = open(fileName, "a")
 
-            date_time = datetime.datetime.now()
-
-            tz = pytz.timezone('America/Montreal')
-
-            local_time = tz.localize(date_time)
+            local_time = tz.localize(date_time.now())
             f.write(f"{local_time.time().strftime('%I:%M %p')},{sensor.value},{sensor.voltage}\n")
     except Exception as error:
         raise error
