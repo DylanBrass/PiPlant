@@ -1,4 +1,5 @@
 import axios from 'axios';
+import './ChartPage.css';
 import React, { useEffect, useState } from 'react'
 import { LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts';
 import Navbar from './NavigationBar';
@@ -54,14 +55,18 @@ function ChartPage() {
             <h1>Chart Page</h1>
             
             
+            <div className='chart'>
             <LineChart width={500} height={300} data={data}>
                 <XAxis dataKey="time" />
                 <YAxis dataKey="value" />
                 <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
                 <Line type="monotone" dataKey="value" stroke="#82ca9d" />
             </LineChart>
+            </div>
+
 
             <br/>
+            <div className='datepicker'>
             <DatePicker
                 showIcon
                 dateFormat="yyyy-MM-dd"
@@ -75,6 +80,7 @@ function ChartPage() {
                     <option value={i + 1} key={i + 1}>{i + 1}</option>
                   ))}
                 </select>
+                </div>
         </div>
     )
 }

@@ -13,12 +13,14 @@ const NavigationBar = () => {
           <img src={logo}  atl="logo"/>
           </Link>
         </li>
-          <Link to="/">Home</Link>
         <li>
-          <Link to="/login">Login</Link>
+          <Link to="/" style={{color:'white'}}>Home</Link>
+          </li>
+        <li>
+          <Link to="/login" style={{color:'white'}}>Login</Link>
         </li>
         <li>
-            <Link to="/chart">Chart</Link>
+            <Link to="/chart" style={{color:'white'}}>Chart</Link>
         </li>
       </ul>
     </nav>
