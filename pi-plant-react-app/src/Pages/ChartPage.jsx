@@ -58,10 +58,10 @@ function ChartPage() {
                 
                         <div className='chart'>
                         <LineChart width={700} height={500}data={data}>
-                            <XAxis dataKey="time"/>
-                            <YAxis dataKey="value" type="number"  domain={[0, 'dataMax']}/>
+                            <XAxis tick={{fontSize: 5, color: "#000000"}} dataKey="time"/>
+                            <YAxis tick={{fontSize: 5, color: "#000000"}} dataKey="value" type="number"  domain={[0, 'dataMax']}/>
                             <CartesianGrid stroke="#000000" strokeDasharray="5 5"/>
-                            <Line type="monotone" dataKey="value" stroke="#fff" />
+                            <Line type="monotone" dataKey="value" stroke="#000000" />
                         </LineChart>
                         </div>
                     <br/>
