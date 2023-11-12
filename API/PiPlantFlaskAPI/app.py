@@ -6,6 +6,20 @@ from moistureSensorFunc.moistureSensor import *
 
 app = Flask(__name__)
 
+LED1_PIN = 24
+led1State = False
+
+LED2_PIN = 23
+led2State = False
+
+allLights = {LED1_PIN: led1State, LED2_PIN: led2State}
+
+GPIO.setmode(GPIO.BCM)
+
+for pin in allLights.keys():
+    GPIO.setup(pin, GPIO.OUT)
+    GPIO.output(LED1_PIN, allLights.get(pin))
+
 
 @app.route('/numberOfLights')
 @cross_origin()
