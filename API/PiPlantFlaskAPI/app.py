@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 @app.route('/numberOfLights')
 @cross_origin()
-def numberOfLights():
+def numberOfLightsEndpoint():
     return numberOfLights()
 
 
