@@ -1,4 +1,5 @@
 import datetime
+import time
 import RPi.GPIO as GPIO
 import pytz
 from flask import jsonify, abort
@@ -95,11 +96,11 @@ def collectDataSensor(WaitTime: int):
             counter += 1
             f = open(fileName, "a")
 
-            time = datetime.datetime.now()
+            date_time = datetime.datetime.now()
 
             tz = pytz.timezone('Asia/Kolkata')
 
-            local_time = tz.localize(time)
+            local_time = tz.localize(date_time)
             f.write(f"{local_time.time().strftime('%I:%M %p')},{sensor.value},{sensor.voltage}\n")
     except Exception as error:
         raise error
