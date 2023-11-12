@@ -4,10 +4,6 @@ from flask_cors import cross_origin
 from ligthFunctions.lightFunctionsFunctions import *
 from moistureSensorFunc.moistureSensor import *
 
-GPIO.setwarnings(False)
-GPIO.cleanup()
-
-
 app = Flask(__name__)
 
 
