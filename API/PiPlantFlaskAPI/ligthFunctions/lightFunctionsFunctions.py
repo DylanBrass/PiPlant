@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 from flask import jsonify, abort
 
-LED1_PIN = 24
+LED1_Ptick={{fontSize: 5, color: "#000000"}}IN = 24
 led1State = False
 
 LED2_PIN = 23
