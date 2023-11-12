@@ -75,8 +75,7 @@ def collectDataSensor(WaitTime: int):
     try:
         tz = pytz.timezone('America/Montreal')
         local_time = datetime.datetime.now(tz)
-
-        local_time = local_time.replace(day=local_time.day - 1)
+        print(f"{local_time}")
         counter = 1
         for sensor in allMoistureSensors:
 
