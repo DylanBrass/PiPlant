@@ -90,7 +90,7 @@ def runCollectDataThread():
 
 def collectDataSensor(WaitTime: int):
     try:
-        tz = pytz.timezone('America/Montreal')
+        tz = pytz.timezone('America/New_York')
         local_time = datetime.datetime.now(tz)
 
         counter = 1
