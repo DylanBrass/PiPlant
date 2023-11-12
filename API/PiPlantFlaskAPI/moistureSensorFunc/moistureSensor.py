@@ -10,6 +10,9 @@ import adafruit_ads1x15.ads1115 as ADS
 from adafruit_ads1x15.analog_in import AnalogIn
 import threading
 
+
+GPIO.setmode(GPIO.BCM)
+
 # Create an ADS1115 ADC (16-bit) instance.
 
 # Create the I2C bus
