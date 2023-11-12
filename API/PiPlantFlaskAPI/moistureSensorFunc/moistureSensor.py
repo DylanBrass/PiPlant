@@ -10,7 +10,6 @@ import adafruit_ads1x15.ads1115 as ADS
 from adafruit_ads1x15.analog_in import AnalogIn
 import threading
 
-
 # Create the I2C bus
 i2c = busio.I2C(board.SCL, board.SDA)
 
@@ -42,8 +41,8 @@ def getCurrentValueOfMoistureSensor():
 
     counter = 1
     for sensor in allMoistureSensors:
-         allvalues.append({"sensorNum": counter, "values": {"Value": sensor.value, "Voltage": sensor.voltage}})
-         counter += 1
+        allvalues.append({"sensorNum": counter, "values": {"Value": sensor.value, "Voltage": sensor.voltage}})
+        counter += 1
 
     return jsonify(allValues=allvalues)
 
@@ -67,7 +66,6 @@ def startCollectDataThread():
     threading.Thread(target=runCollectDataThread).start()
 
 
-
 def runCollectDataThread():
     while True:
         collectDataSensor(60)
@@ -76,7 +74,8 @@ def runCollectDataThread():
 def collectDataSensor(WaitTime: int):
     try:
         tz = pytz.timezone('America/Montreal')
-        local_time = datetime.datetime.now(tz)
+        local_time = datetime.datetime.now(tz).utcoffset()
+        local_time = local_time - datetime.timedelta(hours=4)
 
         counter = 1
         for sensor in allMoistureSensors:
@@ -90,6 +89,4 @@ def collectDataSensor(WaitTime: int):
     except KeyboardInterrupt:
         print('exiting script')
 
-
     time.sleep(WaitTime)
-
