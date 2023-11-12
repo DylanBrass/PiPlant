@@ -54,8 +54,7 @@ function ChartPage() {
             <Navbar />
             <h1>Chart Page</h1>
             
-            {
-            data.map((item, index) => (
+          
                 <div className='chart'>
                 <LineChart width={700} height={500} data={data}>
                     <XAxis dataKey="time" />
@@ -64,8 +63,8 @@ function ChartPage() {
                     <Line type="monotone" dataKey="value" stroke="#82ca9d" />
                 </LineChart>
                 </div>
-                ))
-            }
+            
+            
             <br/>
             <div className='datepicker'>
             <DatePicker
