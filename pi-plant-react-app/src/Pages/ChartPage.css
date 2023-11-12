@@ -1,0 +1,13 @@
+ 
+ h1{
+    font-weight: bold;
+ }
+
+.chart{
+    margin-left: 450px;
+    padding-top: 80px;
+}
+
+.datepicker{
+    margin-left: 600px;
+}
