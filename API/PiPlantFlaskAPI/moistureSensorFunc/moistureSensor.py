@@ -79,7 +79,7 @@ def collectDataSensor(WaitTime: int):
 
         counter = 1
         for sensor in allMoistureSensors:
-            fileName = f"{datetime.datetime.now().date().today()}-{counter}.csv"
+            fileName = f"{local_time.date().today()}-{counter}.csv"
             counter += 1
             with open(fileName, "a") as f:
                 f.write(f"{local_time.strftime('%I:%M %p')},{sensor.value},{sensor.voltage}\n")
