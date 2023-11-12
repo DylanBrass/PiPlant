@@ -57,9 +57,9 @@ function ChartPage() {
           
                 <div className='chart'>
                 <LineChart width={700} height={500} data={data}>
-                    <XAxis dataKey="time" />
+                    <XAxis dataKey="time" type="number"  domain={['auto', 'auto']} />
                     <YAxis dataKey="value" type="number"  domain={['auto', 'auto']}/>
-                    <CartesianGrid stroke="#eee" strokeDasharray="1 1"/>
+                    <CartesianGrid stroke="#eee" strokeDasharray="3,3"/>
                     <Line type="monotone" dataKey="value" stroke="#82ca9d" />
                 </LineChart>
                 </div>
