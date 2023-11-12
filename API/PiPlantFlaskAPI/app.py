@@ -19,25 +19,25 @@ def numberOfLights():
 
 @app.route("/numberOfMoistureSensors")
 @cross_origin()
-def numberOfMoistureSensors():
+def numberOfMoistureSensorsEndpoint():
     return numberOfMoistureSensors()
 
 
 @app.route('/toggleLight/<lightNumber>', methods=['POST'])
 @cross_origin()
-def toggleLight(lightNumber: int):
+def toggleLightEndpoint(lightNumber: int):
     return toggleLight(int(lightNumber))
 
 
 @app.route('/getCurrentValues', methods=['GET'])
 @cross_origin()
-def getCurrentValue():
+def getCurrentValueEndpoint():
     return getCurrentValueOfMoistureSensor()
 
 
 @app.route("/getValuesForDay/<day>/<sensor_id>")
 @cross_origin()
-def getValuesForDay(day, sensor_id):
+def getValuesForDayEndpoint(day, sensor_id):
     return getGraphData(day, sensor_id)
 
 
