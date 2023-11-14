@@ -4,6 +4,7 @@ from ligthFunctions.lightFunctionsFunctions import *
 from moistureSensorFunc.moistureSensor import *
 from Database.db_setup import *
 from Database.db_fetch_functions import *
+from Database.db_insert_functions import *
 
 app = Flask(__name__)
 
@@ -38,6 +39,19 @@ def getValuesForDayEndpoint(day, sensor_id):
     return getGraphData(day, sensor_id)
 
 
+@app.route("/createAccount", methods=['POST'])
+@cross_origin()
+def createAccountEndpoint():
+    if request.method == 'POST':
+        try:
+            createUserDTO = request.get_json()
+            return createUser(createUserDTO.get("username"), createUserDTO.get("password"))
+        except Exception as e:
+            print(e)
+
+    abort(400)
+
+
 @app.route("/login", methods=['POST'])
 @cross_origin()
 def getUsersEndpoint():
@@ -47,7 +61,6 @@ def getUsersEndpoint():
             return login(loginDTO.get("username"), loginDTO.get("password"))
         except Exception as e:
             print(e)
-            abort(400)
 
     abort(400)
 

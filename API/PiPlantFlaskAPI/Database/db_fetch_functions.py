@@ -27,14 +27,17 @@ def login(loginUsername: str, loginPassword: str):
     connection = getConnection()
     try:
         cur = connection.cursor()
-        users = cur.execute("SELECT * FROM users WHERE username = ? AND password = ?;",
-                            (loginUsername, bcrypt.hashpw(loginPassword.encode(), bcrypt.gensalt()))).fetchone()
+        users = cur.execute("SELECT * FROM users WHERE username = ?;",
+                            loginUsername).fetchone()
         connection.commit()
 
         if users is None:
             abort(401)
 
-        return jsonify(users)
+        if bcrypt.checkpw(loginPassword.encode(), users[2]):
+            return jsonify(users)
+
+        abort(401)
     except Error as e:
         print(e)
     finally:

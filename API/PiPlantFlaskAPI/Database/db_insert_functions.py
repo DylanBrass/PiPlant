@@ -1,29 +1,19 @@
-import sqlite3
 from sqlite3 import Error
-
 import bcrypt
+from Database.db_setup import getConnection
 
 
-def getConnection():
-    return sqlite3.connect('UserPool.db')
-
-
-def setUpDatabase():
+def createUser(username: str, password: str):
     connection = getConnection()
-
     try:
-
-        with open('schema.sql') as f:
-            connection.executescript(f.read())
-
         cur = connection.cursor()
 
         cur.execute("INSERT INTO users (username, password) VALUES (?, ?)",
-                    ('TestUser', bcrypt.checkpw(b'pwd', bcrypt.gensalt()))
+                    (username, bcrypt.hashpw(password.encode(), bcrypt.gensalt()))
                     )
-
         connection.commit()
-        connection.close()
+
+        return 201
     except Error as e:
         print(e)
     finally:
