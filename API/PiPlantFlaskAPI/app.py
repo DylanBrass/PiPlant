@@ -60,7 +60,7 @@ def createAccountEndpoint():
 
 @app.route("/login", methods=['POST'])
 @cross_origin()
-def getUsersEndpoint():
+def loginEndpoint():
     if request.method == 'POST':
         try:
             loginDTO = request.get_json()
