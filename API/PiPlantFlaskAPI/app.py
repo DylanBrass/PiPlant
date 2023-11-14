@@ -3,6 +3,7 @@ from flask import Flask
 from flask_cors import cross_origin
 from ligthFunctions.lightFunctionsFunctions import *
 from moistureSensorFunc.moistureSensor import *
+from Database.db_setup import *
 
 app = Flask(__name__)
 
@@ -36,6 +37,8 @@ def getCurrentValueEndpoint():
 def getValuesForDayEndpoint(day, sensor_id):
     return getGraphData(day, sensor_id)
 
+
+setUpDatabase()
 
 if __name__ == '__main__':
     app.run(threaded=True)

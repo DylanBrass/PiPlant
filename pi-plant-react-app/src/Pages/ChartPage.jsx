@@ -60,7 +60,7 @@ function ChartPage() {
                         <LineChart width={700} height={500}data={data}>
                             <XAxis tick={{color: "#000000"}} dataKey="time"/>
                             <YAxis tick={{color: "#000000"}} dataKey="value" type="number"  domain={[0, 'dataMax']}/>
-                            <CartesianGrid stroke="#000000" strokeDasharray="5 5"/>
+                            <CartesianGrid stroke="#000000" strokeDasharray="5 5" fill='white'/>
                             <Line type="monotone" dataKey="value" stroke="#000000" />
                         </LineChart>
                         </div>
