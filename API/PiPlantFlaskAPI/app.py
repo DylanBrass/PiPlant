@@ -42,7 +42,7 @@ def getValuesForDayEndpoint(day, sensor_id):
 @app.route("/getUsers")
 @cross_origin()
 def getUsersEndpoint():
-    return jsonify(fetchUsers())
+    return fetchUsers()
 
 
 setUpDatabase()

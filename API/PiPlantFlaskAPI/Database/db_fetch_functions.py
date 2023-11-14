@@ -1,17 +1,19 @@
 import sqlite3
 from sqlite3 import Error
+from flask import jsonify
+from db_setup import getConnection
 
 
 def fetchUsers():
-    connection = sqlite3.connect('UserPool.db')
+    connection = getConnection()
     try:
         cur = connection.cursor()
 
-        users = cur.execute("SELECT * FROM users ;").fetchall()
+        users = cur.execute("SELECT * FROM users;").fetchall()
 
         connection.commit()
 
-        return users
+        return jsonify(users)
     except Error as e:
         print(e)
     finally:
