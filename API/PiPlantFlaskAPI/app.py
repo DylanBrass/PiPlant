@@ -39,6 +39,12 @@ def getValuesForDayEndpoint(day, sensor_id):
     return getGraphData(day, sensor_id)
 
 
+@app.route("/getUsers")
+@cross_origin()
+def getUsersEndpoint():
+    return fetchUsers()
+
+
 @app.route("/createAccount", methods=['POST'])
 @cross_origin()
 def createAccountEndpoint():

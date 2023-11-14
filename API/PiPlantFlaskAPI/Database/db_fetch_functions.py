@@ -24,6 +24,8 @@ def fetchUsers():
 
 
 def login(loginUsername: str, loginPassword: str):
+    print(loginUsername)
+    print(loginPassword)
     connection = getConnection()
     try:
         users = connection.execute("SELECT * FROM users WHERE username = ?;",
