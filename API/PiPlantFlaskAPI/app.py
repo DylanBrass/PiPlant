@@ -1,5 +1,4 @@
-from RPi import GPIO
-from flask import Flask
+from flask import Flask, request
 from flask_cors import cross_origin
 from ligthFunctions.lightFunctionsFunctions import *
 from moistureSensorFunc.moistureSensor import *
@@ -39,10 +38,17 @@ def getValuesForDayEndpoint(day, sensor_id):
     return getGraphData(day, sensor_id)
 
 
-@app.route("/getUsers")
+@app.route("/login", methods=['POST'])
 @cross_origin()
 def getUsersEndpoint():
-    return fetchUsers()
+    if request.method == 'POST':
+        try:
+            loginDTO = request.get_json()
+            return login(loginDTO.get("username"), loginDTO.get("password"))
+        except Exception as e:
+            abort(400)
+
+    abort(400)
 
 
 setUpDatabase()

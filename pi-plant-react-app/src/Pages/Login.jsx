@@ -2,13 +2,14 @@ import NavigationBar from "./NavigationBar";
 import React, { useState } from 'react';
 import './Login.css'; // Import your CSS file for styling
 import plant1 from './Plant1.jpg'
+import axios from "axios";
 
 function Login() {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+    setUsername(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
@@ -18,6 +19,17 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // You can add your login logic here
+    axios.post('http://' + window.location.hostname + ':5000/login', {
+        username: username,
+        password:  password
+    })
+        .then(function (response) {
+          alert("Success")
+        })
+        .catch(function (error) {
+          alert("Failed")
+        });
+
   };
 
   return (
@@ -32,9 +44,8 @@ function Login() {
             <div className="form-group">
               <label htmlFor="email">Email</label>
               <input
-                type="email"
-                id="email"
-                value={email}
+                id="username"
+                value={username}
                 onChange={handleEmailChange}
               />
             </div>
