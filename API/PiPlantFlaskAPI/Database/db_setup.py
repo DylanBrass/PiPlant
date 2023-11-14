@@ -13,7 +13,7 @@ def setUpDatabase():
 
     try:
 
-        with open('../schema.sql') as f:
+        with open('schema.sql') as f:
             connection.executescript(f.read())
 
         cur = connection.cursor()
