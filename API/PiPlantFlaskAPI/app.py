@@ -3,7 +3,7 @@ from flask import Flask
 from flask_cors import cross_origin
 from ligthFunctions.lightFunctionsFunctions import *
 from moistureSensorFunc.moistureSensor import *
-#from Database.db_setup import *
+from Database.db_setup import *
 from Database.db_fetch_functions import *
 
 app = Flask(__name__)
@@ -45,7 +45,7 @@ def getUsersEndpoint():
     return fetchUsers()
 
 
-#setUpDatabase()
+setUpDatabase()
 
 if __name__ == '__main__':
     app.run(threaded=True)
