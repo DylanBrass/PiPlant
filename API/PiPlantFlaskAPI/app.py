@@ -46,6 +46,7 @@ def getUsersEndpoint():
             loginDTO = request.get_json()
             return login(loginDTO.get("username"), loginDTO.get("password"))
         except Exception as e:
+            print(e)
             abort(400)
 
     abort(400)
