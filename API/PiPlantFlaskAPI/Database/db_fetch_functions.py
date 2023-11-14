@@ -26,9 +26,8 @@ def fetchUsers():
 def login(loginUsername: str, loginPassword: str):
     connection = getConnection()
     try:
-        cur = connection.cursor()
-        users = cur.execute("SELECT * FROM users WHERE username = ?;",
-                            loginUsername).fetchone()
+        users = connection.execute("SELECT * FROM users WHERE username = ?;",
+                                   loginUsername).fetchone()
         connection.commit()
 
         if users is None:
