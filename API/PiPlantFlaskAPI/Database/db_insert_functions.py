@@ -1,5 +1,7 @@
 from sqlite3 import Error
 import bcrypt
+from flask import jsonify
+
 from Database.db_setup import getConnection
 
 
@@ -13,7 +15,7 @@ def createUser(username: str, password: str):
                     )
         connection.commit()
 
-        return 201
+        return jsonify(), 201
     except Error as e:
         print(e)
     finally:
