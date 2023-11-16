@@ -31,7 +31,7 @@ def login(loginUsername: str, loginPassword: str):
         users = connection.execute("SELECT * FROM users WHERE username = ?;",
                                    loginUsername).fetchone()
         connection.commit()
-
+        print("Line 34")
         print(f"users : {users}")
         if users is None:
             abort(401)
@@ -41,7 +41,7 @@ def login(loginUsername: str, loginPassword: str):
 
         abort(401)
     except Error as e:
-        print(e)
+        print(f"Error in login func : {e}")
     finally:
         if connection:
             connection.close()
