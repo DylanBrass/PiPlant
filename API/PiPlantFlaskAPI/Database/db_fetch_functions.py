@@ -28,8 +28,7 @@ def login(loginUsername: str, loginPassword: str):
     print(loginPassword)
     connection = getConnection()
     try:
-        users = connection.execute("SELECT * FROM users WHERE username = ?;",
-                                   loginUsername).fetchone()
+        users = connection.execute("SELECT * FROM users WHERE username = ?;", (loginUsername,)).fetchone()
         connection.commit()
         print("Line 34")
         print(f"users : {users}")

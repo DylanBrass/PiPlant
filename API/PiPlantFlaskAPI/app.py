@@ -61,14 +61,11 @@ def createAccountEndpoint():
 @app.route("/login", methods=['POST'])
 @cross_origin()
 def loginEndpoint():
-    if request.method == 'POST':
-        try:
-            loginDTO = request.get_json()
-            return login(loginDTO.get("username"), loginDTO.get("password"))
-        except Exception as e:
-            print(e)
-
-    abort(400)
+    try:
+        loginDTO = request.get_json()
+        return login(loginDTO.get("username"), loginDTO.get("password"))
+    except Exception as e:
+        print(e)
 
 
 setUpDatabase()
