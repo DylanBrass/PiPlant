@@ -32,7 +32,7 @@ def login(loginUsername: str, loginPassword: str):
                                    loginUsername).fetchone()
         connection.commit()
 
-        print(users)
+        print(f"users : {users}")
         if users is None:
             abort(401)
 

@@ -16,11 +16,11 @@ def setUpDatabase():
         with open('schema.sql') as f:
             connection.executescript(f.read())
 
-        cur = connection.cursor()
-
-        cur.execute("INSERT INTO users (username, password) VALUES (?, ?)",
-                    ('TestUser', bcrypt.checkpw(b'pwd', bcrypt.gensalt()))
-                    )
+        # cur = connection.cursor()
+        #
+        # cur.execute("INSERT INTO users (username, password) VALUES (?, ?)",
+        #             ('TestUser', bcrypt.checkpw(b'pwd', bcrypt.gensalt()))
+        #             )
 
         connection.commit()
         connection.close()
