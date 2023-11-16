@@ -49,7 +49,7 @@ def getCurrentValueOfMoistureSensor():
 
 def getGraphData(date, sensorId):
     try:
-        f = open(f"{date}-{sensorId}.csv", "r")
+        f = open(f"./readings/{date}-{sensorId}.csv", "r")
         s = f.readlines()
     except OSError:
         abort(404)
@@ -79,7 +79,7 @@ def collectDataSensor(WaitTime: int):
         counter = 1
         for sensor in allMoistureSensors:
 
-            fileName = f"{local_time.date()}-{counter}.csv"
+            fileName = f"./readings/{local_time.date()}-{counter}.csv"
             with open(fileName, "a") as f:
                 f.write(f"{local_time.strftime('%I:%M %p')},{percent_translation(sensor.value, counter)},{sensor.voltage}\n")
             counter += 1
