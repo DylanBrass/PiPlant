@@ -66,7 +66,7 @@ def createAccountEndpoint():
 
 
 @app.route("/login", methods=['POST'])
-@cross_origin(origins=(str(urlparse(request.url_root)).replace(":5", ":3")), allow_headers="*")
+@cross_origin(origins="http://192.168.2.185:3000", allow_headers="*")
 def loginEndpoint():
     if request.method == 'POST':
         try:
