@@ -71,11 +71,13 @@ def loginEndpoint():
         token = login(loginDTO.get("username"), loginDTO.get("password"))
         if token is None:
             abort(401)
-
-        return jsonify(username=loginDTO.get("username")).set_cookie("Bearer", token)
-
+        response = jsonify(username=loginDTO.get("username"))
+        response.set_cookie("Bearer", token)
+        return response
+    
     except Exception as e:
         print(e)
+        abort(422)
 
 
 setUpDatabase()

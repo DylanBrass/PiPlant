@@ -35,8 +35,7 @@ def login(loginUsername: str, loginPassword: str):
             abort(401)
 
         if not bcrypt.checkpw(loginPassword.encode(), user[2]):
-            return jsonify(), 401
-
+            abort(401)
         if user:
             try:
                 # token should expire after 24 hrs
