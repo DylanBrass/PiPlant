@@ -77,7 +77,7 @@ def loginEndpoint():
                 abort(401)
             response = jsonify(username=loginDTO.get("username"))
             domain = urlparse(request.base_url).hostname + ":3000"
-            response.set_cookie("Bearer", token, httponly=True, max_age=900, path="/", samesite="Lax",
+            response.set_cookie("Bearer", token, httponly=True, max_age=900, path="/", samesite="None",
                                 domain=domain)
             response.headers["Access-Control-Allow-Credentials"] = "true"
             response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS, PUT, DELETE"
