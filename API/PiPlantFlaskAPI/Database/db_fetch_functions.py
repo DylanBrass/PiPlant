@@ -66,3 +66,20 @@ def login(loginUsername: str, loginPassword: str):
     finally:
         if connection:
             connection.close()
+
+
+def get_by_id(user_id):
+    connection = getConnection()
+    try:
+        cur = connection.cursor()
+
+        user = cur.execute("SELECT * FROM users WHERE id = ?;", (user_id,)).fetchone()
+
+        connection.commit()
+
+        return user
+    except Error as e:
+        print(e)
+    finally:
+        if connection:
+            connection.close()
