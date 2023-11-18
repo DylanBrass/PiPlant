@@ -4,7 +4,6 @@ import './Login.css'; // Import your CSS file for styling
 import plant1 from './Plant1.jpg'
 import axios from "axios";
 
-axios.defaults.withCredentials = true;
 
 
 function Login() {
