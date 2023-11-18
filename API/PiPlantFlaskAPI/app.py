@@ -79,7 +79,6 @@ def loginEndpoint():
         response.headers["Access-Control-Allow-Credentials"] = "true"
         response.headers["Access-Control-Allow-Origin"] = "*"
         response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS, PUT, DELETE"
-        response.headers.add('access-control-allow-credentials', 'true')
         return response
 
     except Exception as e:

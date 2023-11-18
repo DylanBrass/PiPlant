@@ -23,7 +23,7 @@ function Login() {
     axios.post('http://' + window.location.hostname + ':5000/login', {
         username: username,
         password:  password
-    }, {"access-control-allow-origin": "*"})
+    })
         .then(function (response) {
           alert("Success")
         })
