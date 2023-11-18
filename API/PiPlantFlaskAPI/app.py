@@ -1,7 +1,7 @@
 import os
 
 from flask import Flask, request
-from flask_cors import cross_origin
+from flask_cors import cross_origin, CORS
 from ligthFunctions.lightFunctionsFunctions import *
 from moistureSensorFunc.moistureSensor import *
 from Database.db_setup import *
@@ -10,6 +10,7 @@ from Database.db_insert_functions import *
 from urllib.parse import urlparse
 
 app = Flask(__name__)
+CORS(app, supports_credentials=True)
 
 SECRET_KEY = os.environ.get('SECRET_KEY') or 'fairies-are-magic'
 app.config['SECRET_KEY'] = SECRET_KEY
@@ -36,7 +37,7 @@ def toggleLightEndpoint(lightNumber: int):
 @app.route('/getCurrentValues', methods=['GET'])
 @cross_origin(allow_headers="*")
 def getCurrentValueEndpoint():
-    print("Cookies" + request.cookies)
+    print("Cookies" + str(request.cookies))
     return getCurrentValueOfMoistureSensor()
 
 
@@ -68,7 +69,7 @@ def createAccountEndpoint():
 @app.route("/login", methods=['POST'])
 @cross_origin(allow_headers="*")
 def loginEndpoint():
-    
+
     try:
         loginDTO = request.get_json()
         token = login(loginDTO.get("username"), loginDTO.get("password"))
@@ -78,7 +79,6 @@ def loginEndpoint():
         domain = urlparse(request.base_url).hostname + ":3000"
         response.set_cookie("Bearer", token, httponly=True, max_age=900, path="/", samesite="None",
                             domain=domain)
-        response.headers["Access-Control-Allow-Credentials"] = "true"
         response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS, PUT, DELETE"
         return response
 
