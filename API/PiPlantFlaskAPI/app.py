@@ -13,6 +13,7 @@ app = Flask(__name__)
 SECRET_KEY = os.environ.get('SECRET_KEY') or 'this is a secret'
 app.config['SECRET_KEY'] = SECRET_KEY
 
+
 @app.route('/numberOfLights')
 @cross_origin()
 def numberOfLightsEndpoint():
@@ -67,7 +68,12 @@ def createAccountEndpoint():
 def loginEndpoint():
     try:
         loginDTO = request.get_json()
-        return login(loginDTO.get("username"), loginDTO.get("password"))
+        token = login(loginDTO.get("username"), loginDTO.get("password"))
+        if token is None:
+            abort(401)
+
+        return jsonify(username=loginDTO.get("username")).set_cookie("Bearer", token)
+
     except Exception as e:
         print(e)
 
