@@ -42,7 +42,6 @@ def getCurrentValueEndpoint():
 @app.route("/getValuesForDay/<day>/<sensor_id>")
 @cross_origin()
 def getValuesForDayEndpoint(day, sensor_id):
-    print(request.cookies.get("Bearer"))
     return getGraphData(day, sensor_id)
 
 
@@ -78,6 +77,7 @@ def loginEndpoint():
         response.set_cookie("Bearer", token, httponly=True, max_age=900, path="/", samesite="Lax",
                             domain=domain)
         response.headers["Access-Control-Allow-Credentials"] = "true"
+
         response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS, PUT, DELETE"
         return response
 
