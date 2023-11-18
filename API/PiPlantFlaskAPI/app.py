@@ -10,7 +10,7 @@ from Database.db_insert_functions import *
 
 app = Flask(__name__)
 
-SECRET_KEY = os.environ.get('SECRET_KEY') or 'this is a secret'
+SECRET_KEY = os.environ.get('SECRET_KEY') or 'fairies-are-magic'
 app.config['SECRET_KEY'] = SECRET_KEY
 
 
@@ -73,6 +73,7 @@ def loginEndpoint():
             abort(401)
         response = jsonify(username=loginDTO.get("username"))
         domain = request.host + ":3000"
+        print(domain)
         response.set_cookie("Bearer", token, httponly=True, secure=True, max_age=900, path="/", samesite="Lax", domain=domain)
         return response
 
