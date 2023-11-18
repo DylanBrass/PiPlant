@@ -33,7 +33,9 @@ const NavigationBar = () => {
             <Link to="/chart" style={{color:'white'}}>Chart</Link>
         </li>
         <li>
-          <button className="logout-button" onClick={logout}/>
+            <button className="logout-button" onClick={logout}>
+              Logout
+            </button>
         </li>
       </ul>
     </nav>
