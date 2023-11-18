@@ -75,7 +75,7 @@ def loginEndpoint():
         response = jsonify(username=loginDTO.get("username"))
         domain = urlparse(request.base_url).hostname
         print(domain)
-        response.set_cookie("Bearer", token, httponly=True, secure=True, max_age=900, path="/", samesite="Lax",
+        response.set_cookie("Bearer", token, httponly=True, secure=True, max_age=900, path="*", samesite="Lax",
                             domain=domain)
         return response
 
