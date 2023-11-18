@@ -14,7 +14,7 @@ def fetchUsers():
     try:
         cur = connection.cursor()
 
-        users = cur.execute("SELECT * FROM users;").fetchall()
+        users = list(cur.execute("SELECT * FROM users;").fetchall())
 
         connection.commit()
         for user in users:
@@ -31,7 +31,7 @@ def fetchUsers():
 def login(loginUsername: str, loginPassword: str):
     connection = getConnection()
     try:
-        user = connection.execute("SELECT * FROM users WHERE username = ?;", (loginUsername,)).fetchone()
+        user = list(connection.execute("SELECT * FROM users WHERE username = ?;", (loginUsername,)).fetchone())
         connection.commit()
         print(user)
         if user is None:
@@ -75,7 +75,7 @@ def get_by_id(user_id):
     try:
         cur = connection.cursor()
 
-        user = cur.execute("SELECT * FROM users WHERE id = ?;", (user_id,)).fetchone()
+        user = list(cur.execute("SELECT * FROM users WHERE id = ?;", (user_id,)).fetchone())
 
         connection.commit()
         user[2] = None
