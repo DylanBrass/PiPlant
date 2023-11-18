@@ -14,7 +14,7 @@ function Login() {
     setUsername(e.target.value);
   };
 
-  const handlePasswordChange = (e) => {Access-Control-Allow-Credentials
+  const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
 
