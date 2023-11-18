@@ -14,11 +14,9 @@ def fetchUsers():
     try:
         cur = connection.cursor()
 
-        users = dict(cur.execute("SELECT * FROM users;").fetchall())
+        users = cur.execute("SELECT * FROM users;").fetchall()
 
         connection.commit()
-        for user in users:
-            user["password"] = None
 
         return jsonify(users)
     except Error as e:
@@ -31,12 +29,12 @@ def fetchUsers():
 def login(loginUsername: str, loginPassword: str):
     connection = getConnection()
     try:
-        user = dict(connection.execute("SELECT * FROM users WHERE username = ?;", (loginUsername,)).fetchone())
+        user = connection.execute("SELECT * FROM users WHERE username = ?;", (loginUsername,)).fetchone()
         connection.commit()
         print(user)
         if user is None:
             abort(401)
-        print(user["password"])
+        print(user[2])
         if not bcrypt.checkpw(loginPassword.encode(), user[2]):
             abort(401)
 
@@ -75,10 +73,10 @@ def get_by_id(user_id):
     try:
         cur = connection.cursor()
 
-        user = dict(cur.execute("SELECT * FROM users WHERE id = ?;", (user_id,)).fetchone())
+        user = cur.execute("SELECT * FROM users WHERE id = ?;", (user_id,)).fetchone()
 
         connection.commit()
-        user["password"] = None
+
         return user
     except Error as e:
         print(e)
