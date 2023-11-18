@@ -8,9 +8,8 @@ import Database.db_fetch_functions as db_fetch_functions
 def secured_endpoint(f):
     @wraps(f)
     def decorated(*args, **kwargs):
-        token = None
-        if "Bearer" in request.cookies:
-            token = request.cookies["Bearer"]
+        token = request.cookies["Bearer"]
+        
         if not token:
             return {
                 "message": "Bearer Token is missing!",

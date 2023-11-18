@@ -6,6 +6,8 @@ import Navbar from './NavigationBar';
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css'
 
+axios.defaults.withCredentials = true
+
 function ChartPage() {
 
     const [data, setData] = useState([])
