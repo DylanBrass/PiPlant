@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, request
 from flask_cors import cross_origin
 from ligthFunctions.lightFunctionsFunctions import *
@@ -8,6 +10,8 @@ from Database.db_insert_functions import *
 
 app = Flask(__name__)
 
+SECRET_KEY = os.environ.get('SECRET_KEY') or 'this is a secret'
+app.config['SECRET_KEY'] = SECRET_KEY
 
 @app.route('/numberOfLights')
 @cross_origin()

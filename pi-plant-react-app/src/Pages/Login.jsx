@@ -60,6 +60,7 @@ function Login() {
             </div>
             <button className="login-button" type="submit">Login</button>
           </form>
+            <a href="/register" className="register-link">Register</a>
         </div>
       </div>
     </div>

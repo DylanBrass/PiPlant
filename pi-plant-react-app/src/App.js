@@ -7,6 +7,7 @@ import {
   Routes, // instead of "Switch"
   Route,
 } from "react-router-dom";
+import RegisterPage from "./Pages/RegisterPage";
 
 const App = () => {
   return (
@@ -15,6 +16,8 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/chart" element={<ChartPage/>} />
+        <Route path="/register" element={<RegisterPage/>} />
+        <Route path="*" element={<h1>Not Found</h1>} />
       </Routes>
     </BrowserRouter>
   );
