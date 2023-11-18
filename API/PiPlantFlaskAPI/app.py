@@ -22,38 +22,38 @@ def numberOfLightsEndpoint():
 
 
 @app.route("/numberOfMoistureSensors")
-@cross_origin(origins="http://"+urlparse(request.base_url).hostname+":3000", allow_headers="*")
+@cross_origin(origins="http://192.168.2.185:3000", allow_headers="*")
 def numberOfMoistureSensorsEndpoint():
     return numberOfMoistureSensors()
 
 
 @app.route('/toggleLight/<lightNumber>', methods=['POST'])
-@cross_origin(origins="http://"+urlparse(request.base_url).hostname+":3000", allow_headers="*")
+@cross_origin(origins="http://192.168.2.185:3000", allow_headers="*")
 def toggleLightEndpoint(lightNumber: int):
     return toggleLight(int(lightNumber))
 
 
 @app.route('/getCurrentValues', methods=['GET'])
-@cross_origin(origins="http://"+urlparse(request.base_url).hostname+":3000", allow_headers="*")
+@cross_origin(origins="http://192.168.2.185:3000", allow_headers="*")
 def getCurrentValueEndpoint():
     print("Cookies" + request.cookies)
     return getCurrentValueOfMoistureSensor()
 
 
 @app.route("/getValuesForDay/<day>/<sensor_id>")
-@cross_origin(origins="http://"+urlparse(request.base_url).hostname+":3000", allow_headers="*")
+@cross_origin(origins="http://192.168.2.185:3000", allow_headers="*")
 def getValuesForDayEndpoint(day, sensor_id):
     return getGraphData(day, sensor_id)
 
 
 @app.route("/getUsers")
-@cross_origin(origins="http://"+urlparse(request.base_url).hostname+":3000", allow_headers="*")
+@cross_origin(origins="http://192.168.2.185:3000", allow_headers="*")
 def getUsersEndpoint():
     return fetchUsers()
 
 
 @app.route("/createAccount", methods=['POST'])
-@cross_origin(origins="http://"+urlparse(request.base_url).hostname+":3000", allow_headers="*")
+@cross_origin(origins="http://192.168.2.185:3000", allow_headers="*")
 def createAccountEndpoint():
     if request.method == 'POST':
         try:
@@ -66,7 +66,7 @@ def createAccountEndpoint():
 
 
 @app.route("/login", methods=['POST'])
-@cross_origin(origins="http://"+urlparse(request.base_url).hostname+":3000", allow_headers="*")
+@cross_origin(origins="http://192.168.2.185:3000", allow_headers="*")
 def loginEndpoint():
     if request.method == 'POST':
         try:
