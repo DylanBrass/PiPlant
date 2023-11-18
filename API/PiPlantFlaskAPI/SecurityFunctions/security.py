@@ -1,7 +1,8 @@
+import json
 from functools import wraps
 
 import jwt
-from flask import request, current_app, abort
+from flask import request, current_app, abort, jsonify
 import Database.db_fetch_functions as db_fetch_functions
 
 
@@ -11,11 +12,10 @@ def secured_endpoint(f):
         token = request.cookies["Bearer"]
         print(token)
         if not token:
-            return {
-                "message": "Bearer Token is missing!",
-                "data": None,
-                "error": "Unauthorized"
-            }, 401
+            return jsonify(
+                message="Bearer Token is missing!",
+                error="Unauthorized"
+            ), 401
 
         print("token is not none")
         try:
@@ -24,18 +24,17 @@ def secured_endpoint(f):
             current_user = db_fetch_functions.get_by_id(data["user_id"])
             print(current_user)
             if current_user is None:
-                return {
-                    "message": "Invalid Authentication token!",
-                    "data": None,
-                    "error": "Unauthorized"
-                }, 401
+                return jsonify(
+                    message="Invalid Authentication token!",
+                    error="Unauthorized"
+                ), 401
+
 
         except Exception as e:
-            return {
-                "message": "Something went wrong",
-                "data": None,
-                "error": str(e)
-            }, 500
+            return jsonify(
+                message="Unknown error occurred!",
+                error=e
+            ), 422
         return f(*args, **kwargs)
 
     return decorated
