@@ -2,7 +2,6 @@ from functools import wraps
 
 import jwt
 from flask import request, current_app, abort
-import models
 import Database.db_fetch_functions as db_fetch_functions
 
 
