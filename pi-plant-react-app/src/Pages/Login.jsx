@@ -19,10 +19,11 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // You can add your login logic here
+
     axios.post('http://' + window.location.hostname + ':5000/login', {
         username: username,
         password:  password
-    })
+    }, {"access-control-allow-origin": "*"})
         .then(function (response) {
           alert("Success")
         })
