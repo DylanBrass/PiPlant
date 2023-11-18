@@ -17,6 +17,8 @@ def fetchUsers():
         users = cur.execute("SELECT * FROM users;").fetchall()
 
         connection.commit()
+        for user in users:
+            user[2] = None
 
         return jsonify(users)
     except Error as e:
@@ -76,7 +78,7 @@ def get_by_id(user_id):
         user = cur.execute("SELECT * FROM users WHERE id = ?;", (user_id,)).fetchone()
 
         connection.commit()
-
+        user[2] = None
         return user
     except Error as e:
         print(e)
