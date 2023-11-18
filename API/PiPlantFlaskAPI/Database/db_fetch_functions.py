@@ -20,7 +20,6 @@ def fetchUsers():
 
         for user in users:
             print(user)
-            user[2] = None
 
         return jsonify(users)
     except Error as e:
