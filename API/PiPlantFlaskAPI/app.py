@@ -16,43 +16,43 @@ app.config['SECRET_KEY'] = SECRET_KEY
 
 
 @app.route('/numberOfLights')
-@cross_origin()
+@cross_origin(urlparse(request.base_url))
 def numberOfLightsEndpoint():
     return numberOfLights()
 
 
 @app.route("/numberOfMoistureSensors")
-@cross_origin()
+@cross_origin(urlparse(request.base_url))
 def numberOfMoistureSensorsEndpoint():
     return numberOfMoistureSensors()
 
 
 @app.route('/toggleLight/<lightNumber>', methods=['POST'])
-@cross_origin()
+@cross_origin(urlparse(request.base_url))
 def toggleLightEndpoint(lightNumber: int):
     return toggleLight(int(lightNumber))
 
 
 @app.route('/getCurrentValues', methods=['GET'])
-@cross_origin()
+@cross_origin(urlparse(request.base_url))
 def getCurrentValueEndpoint():
     return getCurrentValueOfMoistureSensor()
 
 
 @app.route("/getValuesForDay/<day>/<sensor_id>")
-@cross_origin()
+@cross_origin(urlparse(request.base_url))
 def getValuesForDayEndpoint(day, sensor_id):
     return getGraphData(day, sensor_id)
 
 
 @app.route("/getUsers")
-@cross_origin()
+@cross_origin(urlparse(request.base_url))
 def getUsersEndpoint():
     return fetchUsers()
 
 
 @app.route("/createAccount", methods=['POST'])
-@cross_origin()
+@cross_origin(urlparse(request.base_url))
 def createAccountEndpoint():
     if request.method == 'POST':
         try:
@@ -65,7 +65,7 @@ def createAccountEndpoint():
 
 
 @app.route("/login", methods=['POST'])
-@cross_origin()
+@cross_origin(urlparse(request.base_url))
 def loginEndpoint():
     try:
         loginDTO = request.get_json()
@@ -73,13 +73,10 @@ def loginEndpoint():
         if token is None:
             abort(401)
         response = jsonify(username=loginDTO.get("username"))
-
-        response.set_cookie("Bearer", token, httponly=True, secure=False, max_age=900, path="/", samesite="Lax",
-                            domain=None)
-        response.headers["Access-Control-Allow-Credentials"] = "true"
-        response.headers["Access-Control-Allow-Origin"] = "*"
-        response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS, PUT, DELETE"
-        response.headers.add('access-control-allow-credentials', 'true')
+        domain = urlparse(request.base_url).hostname
+        response.set_cookie("Bearer", token, httponly=True, max_age=900, path="/", samesite="Lax",
+                            domain=domain)
+      
         return response
 
     except Exception as e:
