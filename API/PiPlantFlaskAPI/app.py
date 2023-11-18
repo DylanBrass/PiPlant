@@ -16,43 +16,43 @@ app.config['SECRET_KEY'] = SECRET_KEY
 
 
 @app.route('/numberOfLights')
-@cross_origin(urlparse(request.base_url))
+@cross_origin()
 def numberOfLightsEndpoint():
     return numberOfLights()
 
 
 @app.route("/numberOfMoistureSensors")
-@cross_origin(urlparse(request.base_url))
+@cross_origin()
 def numberOfMoistureSensorsEndpoint():
     return numberOfMoistureSensors()
 
 
 @app.route('/toggleLight/<lightNumber>', methods=['POST'])
-@cross_origin(urlparse(request.base_url))
+@cross_origin()
 def toggleLightEndpoint(lightNumber: int):
     return toggleLight(int(lightNumber))
 
 
 @app.route('/getCurrentValues', methods=['GET'])
-@cross_origin(urlparse(request.base_url))
+@cross_origin()
 def getCurrentValueEndpoint():
     return getCurrentValueOfMoistureSensor()
 
 
 @app.route("/getValuesForDay/<day>/<sensor_id>")
-@cross_origin(urlparse(request.base_url))
+@cross_origin()
 def getValuesForDayEndpoint(day, sensor_id):
     return getGraphData(day, sensor_id)
 
 
 @app.route("/getUsers")
-@cross_origin(urlparse(request.base_url))
+@cross_origin()
 def getUsersEndpoint():
     return fetchUsers()
 
 
 @app.route("/createAccount", methods=['POST'])
-@cross_origin(urlparse(request.base_url))
+@cross_origin()
 def createAccountEndpoint():
     if request.method == 'POST':
         try:
@@ -65,7 +65,7 @@ def createAccountEndpoint():
 
 
 @app.route("/login", methods=['POST'])
-@cross_origin(urlparse(request.base_url))
+@cross_origin()
 def loginEndpoint():
     try:
         loginDTO = request.get_json()
