@@ -9,6 +9,12 @@ import Database.db_fetch_functions as db_fetch_functions
 def secured_endpoint(f):
     @wraps(f)
     def decorated(*args, **kwargs):
+        if "Bearer" not in request.cookies:
+            return jsonify(
+                message="Bearer Token is missing!",
+                error="Unauthorized"
+            ), 401
+        
         token = request.cookies["Bearer"]
         print(token)
         if not token:
