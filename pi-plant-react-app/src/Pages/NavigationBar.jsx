@@ -2,9 +2,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from "./logo.png"
-import './NavigationBar.css'; // Import the CSS file
+import './NavigationBar.css';
+import axios from "axios"; // Import the CSS file
 
 const NavigationBar = () => {
+  const logout = () => {
+    axios.post('http://' + window.location.hostname + ':5000/logout')
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
   return (
     <nav>
       <ul>
@@ -21,6 +31,9 @@ const NavigationBar = () => {
         </li>
         <li>
             <Link to="/chart" style={{color:'white'}}>Chart</Link>
+        </li>
+        <li>
+          <button className="logout-button" onClick={logout}/>
         </li>
       </ul>
     </nav>

@@ -100,6 +100,7 @@ def logoutEndpoint():
     response.set_cookie("Bearer", "", httponly=True, max_age=0, path="/", samesite="None", domain=domain)
     return response
 
+
 setUpDatabase()
 
 if __name__ == '__main__':
