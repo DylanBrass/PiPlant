@@ -4,6 +4,9 @@ import './Login.css'; // Import your CSS file for styling
 import plant1 from './Plant1.jpg'
 import axios from "axios";
 
+axios.defaults.withCredentials = true;
+
+
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -23,7 +26,7 @@ function Login() {
     axios.post('http://' + window.location.hostname + ':5000/login', {
         username: username,
         password:  password
-    }, {withCredentials: true})
+    })
         .then(function (response) {
           alert("Success")
         })

@@ -42,6 +42,7 @@ def getCurrentValueEndpoint():
 @app.route("/getValuesForDay/<day>/<sensor_id>")
 @cross_origin()
 def getValuesForDayEndpoint(day, sensor_id):
+    print(request.cookies.get("Bearer"))
     return getGraphData(day, sensor_id)
 
 
