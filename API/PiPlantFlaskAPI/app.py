@@ -73,10 +73,8 @@ def loginEndpoint():
         if token is None:
             abort(401)
         response = jsonify(username=loginDTO.get("username"))
-        domain = urlparse(request.base_url).hostname
-        print(domain)
-        response.set_cookie("Bearer", token, httponly=True, secure=True, max_age=900, path="*", samesite="Lax",
-                            domain=domain)
+       
+        response.set_cookie("Bearer", token, httponly=True, secure=True, max_age=900, path="/", samesite="Lax")
         return response
 
     except Exception as e:
