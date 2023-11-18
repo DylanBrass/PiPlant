@@ -74,7 +74,7 @@ def loginEndpoint():
         response = jsonify(username=loginDTO.get("username"))
         response.set_cookie("Bearer", token)
         return response
-    
+
     except Exception as e:
         print(e)
         abort(422)

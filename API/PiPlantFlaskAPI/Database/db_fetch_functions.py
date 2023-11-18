@@ -31,19 +31,21 @@ def login(loginUsername: str, loginPassword: str):
     try:
         user = connection.execute("SELECT * FROM users WHERE username = ?;", (loginUsername,)).fetchone()
         connection.commit()
+        print(user)
         if user is None:
             abort(401)
-
+        print(user[2])
         if not bcrypt.checkpw(loginPassword.encode(), user[2]):
             abort(401)
         if user:
             try:
                 # token should expire after 24 hrs
                 token = jwt.encode(
-                    {"user_id": user["_id"]},
+                    {"user_id": user[0]},
                     app.app.config["SECRET_KEY"],
                     algorithm="HS256"
                 )
+                print(token)
                 return token
             except Exception as e:
                 return {
