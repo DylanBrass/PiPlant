@@ -14,7 +14,7 @@ def secured_endpoint(f):
                 message="Bearer Token is missing!",
                 error="Unauthorized"
             ), 401
-        
+
         token = request.cookies["Bearer"]
         print(token)
         if not token:

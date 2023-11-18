@@ -91,6 +91,15 @@ def loginEndpoint():
         abort(422)
 
 
+@app.route("/logout", methods=['POST'])
+@cross_origin(allow_headers="*", supports_credentials=True)
+@secured_endpoint
+def logoutEndpoint():
+    response = jsonify()
+    domain = urlparse(request.base_url).hostname + ":3000"
+    response.set_cookie("Bearer", "", httponly=True, max_age=0, path="/", samesite="None", domain=domain)
+    return response
+
 setUpDatabase()
 
 if __name__ == '__main__':
