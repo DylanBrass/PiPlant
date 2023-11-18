@@ -9,16 +9,20 @@ def secured_endpoint(f):
     @wraps(f)
     def decorated(*args, **kwargs):
         token = request.cookies["Bearer"]
-        
+        print(token)
         if not token:
             return {
                 "message": "Bearer Token is missing!",
                 "data": None,
                 "error": "Unauthorized"
             }, 401
+
+        print("token is not none")
         try:
             data = jwt.decode(token, current_app.config["SECRET_KEY"], algorithms=["HS256"])
+            print(data)
             current_user = db_fetch_functions.get_by_id(data["user_id"])
+            print(current_user)
             if current_user is None:
                 return {
                     "message": "Invalid Authentication token!",
@@ -26,6 +30,7 @@ def secured_endpoint(f):
                     "error": "Unauthorized"
                 }, 401
             if not current_user["active"]:
+                print("user is not active")
                 abort(403)
         except Exception as e:
             return {
