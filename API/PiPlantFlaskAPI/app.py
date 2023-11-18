@@ -72,7 +72,7 @@ def loginEndpoint():
         if token is None:
             abort(401)
         response = jsonify(username=loginDTO.get("username"))
-        response.set_cookie("Bearer", token)
+        response.set_cookie("Bearer", token, httponly=True, samesite="Strict", secure=True, max_age=900)
         return response
 
     except Exception as e:
