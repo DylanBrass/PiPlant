@@ -7,7 +7,7 @@ import gradientBackground from './gradientBackground.avif';
 import lightBulb2 from './light-bulb.png';
 import lightBulb1 from './light-bulb2.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+axios.defaults.withCredentials = true
 function MainPage() {
   const [recentValues, setRecentValues] = useState([]);
   const [selectedLight, setSelectedLight] = useState(1);

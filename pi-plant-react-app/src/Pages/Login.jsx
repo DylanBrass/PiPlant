@@ -4,7 +4,7 @@ import './Login.css'; // Import your CSS file for styling
 import plant1 from './Plant1.jpg'
 import axios from "axios";
 
-
+axios.defaults.withCredentials = true
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -28,9 +28,12 @@ function Login() {
     })
         .then(function (response) {
           alert("Success")
+            console.log(response);
+
         })
         .catch(function (error) {
           alert("Failed")
+            console.log(error);
         });
 
   };
