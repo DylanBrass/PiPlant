@@ -16,7 +16,7 @@ app.config['SECRET_KEY'] = SECRET_KEY
 
 
 @app.route('/numberOfLights')
-@cross_origin(origins="http://"+urlparse(request.base_url).hostname+":3000", allow_headers="*")
+@cross_origin(origins="http://192.168.2.185:3000", allow_headers="*")
 def numberOfLightsEndpoint():
     return numberOfLights()
 
