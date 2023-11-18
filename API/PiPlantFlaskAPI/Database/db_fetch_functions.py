@@ -18,6 +18,10 @@ def fetchUsers():
 
         connection.commit()
 
+        for user in users:
+            print(user)
+            user[2] = None
+
         return jsonify(users)
     except Error as e:
         print(e)
@@ -34,7 +38,6 @@ def login(loginUsername: str, loginPassword: str):
         print(user)
         if user is None:
             abort(401)
-        print(user[2])
         if not bcrypt.checkpw(loginPassword.encode(), user[2]):
             abort(401)
 

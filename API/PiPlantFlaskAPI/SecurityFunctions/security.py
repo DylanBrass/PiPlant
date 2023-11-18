@@ -29,16 +29,13 @@ def secured_endpoint(f):
                     "data": None,
                     "error": "Unauthorized"
                 }, 401
-            if not current_user["active"]:
-                print("user is not active")
-                abort(403)
+
         except Exception as e:
             return {
                 "message": "Something went wrong",
                 "data": None,
                 "error": str(e)
             }, 500
-        current_user[2] = None
         return f(current_user, *args, **kwargs)
 
     return decorated
