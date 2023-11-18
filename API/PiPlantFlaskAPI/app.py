@@ -7,6 +7,7 @@ from moistureSensorFunc.moistureSensor import *
 from Database.db_setup import *
 from Database.db_fetch_functions import *
 from Database.db_insert_functions import *
+from urllib.parse import urlparse
 
 app = Flask(__name__)
 
@@ -72,7 +73,7 @@ def loginEndpoint():
         if token is None:
             abort(401)
         response = jsonify(username=loginDTO.get("username"))
-        domain = request.host + ":3000"
+        domain = urlparse(request.base_url).hostname + ":3000"
         print(domain)
         response.set_cookie("Bearer", token, httponly=True, secure=True, max_age=900, path="/", samesite="Lax", domain=domain)
         return response
