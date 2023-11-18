@@ -8,6 +8,7 @@ from Database.db_setup import *
 from Database.db_fetch_functions import *
 from Database.db_insert_functions import *
 from urllib.parse import urlparse
+from SecurityFunctions.security import *
 
 app = Flask(__name__)
 
@@ -35,6 +36,7 @@ def toggleLightEndpoint(lightNumber: int):
     return toggleLight(int(lightNumber))
 
 
+@secured_endpoint()
 @app.route('/getCurrentValues', methods=['GET'])
 @cross_origin(allow_headers="*", supports_credentials=True)
 def getCurrentValueEndpoint():
@@ -42,12 +44,14 @@ def getCurrentValueEndpoint():
     return getCurrentValueOfMoistureSensor()
 
 
+@secured_endpoint()
 @app.route("/getValuesForDay/<day>/<sensor_id>")
 @cross_origin(allow_headers="*", supports_credentials=True)
 def getValuesForDayEndpoint(day, sensor_id):
     return getGraphData(day, sensor_id)
 
 
+@secured_endpoint()
 @app.route("/getUsers")
 @cross_origin(allow_headers="*", supports_credentials=True)
 def getUsersEndpoint():

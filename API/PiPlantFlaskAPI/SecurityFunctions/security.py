@@ -5,7 +5,8 @@ from flask import request, current_app, abort
 import models
 import Database.db_fetch_functions as db_fetch_functions
 
-def token_required(f):
+
+def secured_endpoint(f):
     @wraps(f)
     def decorated(*args, **kwargs):
         token = None
