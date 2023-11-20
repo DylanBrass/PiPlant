@@ -30,6 +30,9 @@ const NavigationBar = () => {
           <Link to="/login" style={{color:'white'}}>Login</Link>
         </li>
         <li>
+            <Link to="/register" style={{color:'white'}}>Register</Link>
+        </li>
+        <li>
             <Link to="/chart" style={{color:'white'}}>Chart</Link>
         </li>
         <li>

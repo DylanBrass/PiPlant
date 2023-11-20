@@ -1,6 +1,9 @@
 import React from 'react';
 import axios from "axios";
 import {redirect} from "react-router-dom";
+import NavigationBar from './NavigationBar';
+import './RegisterPage.css';
+import plant1 from './Plant1.jpg'
 
 function RegisterPage() {
     const register = (event) => {
@@ -19,12 +22,25 @@ function RegisterPage() {
     }
     return (
         <div>
-            <h1>Register Page</h1>
-            <form onSubmit={register}>
-                <input type="text" placeholder="Username" />
-                <input type="password" placeholder="Password" />
-                <button type="submit">Register</button>
-            </form>
+            <NavigationBar />
+            <div className="register-container">
+                <img src={plant1} alt="Plant" className="login-box-image"/>
+
+                <div className="register-box"  style={{ height: '60%' }}>
+                    <h1 className="register-title">Register</h1>
+                    <form onSubmit={register}>
+                        <div className="form-group">
+                            <label htmlFor="email">Email</label>
+                            <input id="username" />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="password">Password</label>
+                            <input id="password" />
+                        </div>
+                        <button className="register-button" type="submit">Register</button>
+                    </form>
+                </div>
+            </div>
         </div>
     );
 }

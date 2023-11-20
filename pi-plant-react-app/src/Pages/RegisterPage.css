@@ -1,13 +1,11 @@
-/* Login.css */
-
-.login-container {
+.register-container {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     height: 100vh;
-  }
-  
-.login-box {
+}
+
+.register-box {
     background-color: #f4f4f4;
     padding-left: 5%;
     padding-right: 5%;
@@ -17,22 +15,13 @@
     margin-top: 30px;
 }
 
-.login-box-image {
-  height: 60%;
-  border: 1px solid #ccc;
-  width: 300px;
-  margin-top: 30px;
+.register-title {
+   margin-left: -8px;
+    color:#528265;
 }
-  
-.login-title {
-  text-align: center;
-  margin-bottom: 20px;
-  color:#528265;
-}
-  
 .form-group {
-  margin: 10px 0;
-  text-align: left;
+    margin: 10px 0;
+    text-align: left;
 }
 
 .form-group label {
@@ -47,8 +36,8 @@
     border: 1px solid #ccc;
     border-radius: 5px;
 }
-  
-.login-button {
+
+.register-button {
     background-color: #a2c4ac;
     color: #fff;
     border: none;
