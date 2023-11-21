@@ -1,5 +1,5 @@
 // NavigationBar.js
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import logo from "./logo.png"
 import './NavigationBar.css';
@@ -9,16 +9,22 @@ import {useAuth} from "../AuthProvider/AuthProvider";
 
 const NavigationBar = () => {
     const auth = useAuth();
-  const logoutPost = () => {
-    axios.post('http://' + window.location.hostname + ':5000/logout')
-      .then(function (response) {
-        console.log(response);
-        auth.logout()
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
+    const [authState, setAuthState] = useState(false);
+      const logoutPost = () => {
+        axios.post('http://' + window.location.hostname + ':5000/logout')
+          .then(function (response) {
+            console.log(response);
+            auth.logout()
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
+
+  useEffect(() => {
+      setAuthState(auth.isAuthenticated)
+  }, [auth.isAuthenticated]);
+
   return (
     <nav>
       <ul>
@@ -30,7 +36,7 @@ const NavigationBar = () => {
         <li>
           <Link to="/" style={{color:'white'}}>Home</Link>
           </li>
-          {!auth.isAuthenticated &&
+          {!authState &&
               <>
                 <li>
                   <Link to="/login" style={{color:'white'}}>Login</Link>
@@ -43,7 +49,7 @@ const NavigationBar = () => {
         <li>
             <Link to="/chart" style={{color:'white'}}>Chart</Link>
         </li>
-          {auth.isAuthenticated &&
+          {authState &&
         <li>
             <button className="logout-button" onClick={logoutPost}>
               Logout
