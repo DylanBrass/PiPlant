@@ -1,5 +1,5 @@
 import NavigationBar from "./NavigationBar";
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import './Login.css'; // Import your CSS file for styling
 import plant1 from './Plant1.jpg'
 import axios from "axios";
@@ -33,19 +33,23 @@ function Login() {
         .then(function (response) {
           alert("Success")
             console.log(response);
-            auth.login()
-            window.location.href = "/";
-
+          if (response.status === 200) {
+              auth.login()
+          }
         })
         .catch(function (error) {
           alert("Failed")
             console.log(error);
+            
         });
 
   };
-    if(auth.isAuthenticated){
-        window.location.href = "/"
-    }
+    useEffect(() => {
+        if(auth.isAuthenticated){
+            window.location.href = "/"
+        }
+    }, []);
+
   return (
     <div>
       <NavigationBar />

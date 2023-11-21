@@ -12,17 +12,19 @@ import {AuthProvider} from "./AuthProvider/AuthProvider";
 
 const App = () => {
   return (
-      <AuthProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/chart" element={<ChartPage/>} />
-            <Route path="/register" element={<RegisterPage/>} />
-            <Route path="*" element={<h1>Not Found</h1>} />
-          </Routes>
-        </BrowserRouter>
-      </AuthProvider>
+      <>
+        <AuthProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/chart" element={<ChartPage/>} />
+              <Route path="/register" element={<RegisterPage/>} />
+              <Route path="*" element={<h1>Not Found</h1>} />
+            </Routes>
+          </BrowserRouter>
+        </AuthProvider>
+      </>
   );
 };
 

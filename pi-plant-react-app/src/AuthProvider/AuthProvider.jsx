@@ -8,6 +8,7 @@ const AuthProvider = ({ children }) => {
 
     const login = () => {
         setIsAuthenticated(true);
+        window.location.href = "/";
     };
 
     const logout = () => {
