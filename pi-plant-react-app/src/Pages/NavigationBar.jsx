@@ -30,7 +30,7 @@ const NavigationBar = () => {
         <li>
           <Link to="/" style={{color:'white'}}>Home</Link>
           </li>
-          {!auth.isAuthenticated &&
+          {auth.isAuthenticated &&
         <li>
           <Link to="/login" style={{color:'white'}}>Login</Link>
         </li>
@@ -41,7 +41,7 @@ const NavigationBar = () => {
         <li>
             <Link to="/chart" style={{color:'white'}}>Chart</Link>
         </li>
-          {auth.isAuthenticated &&
+          {!auth.isAuthenticated &&
         <li>
             <button className="logout-button" onClick={logoutPost}>
               Logout
