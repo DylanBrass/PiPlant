@@ -45,10 +45,13 @@ def login(loginUsername: str, loginPassword: str):
             try:
                 # token should expire after 24 hrs
                 token = jwt.encode(
-                    {"user_id": user[0]},
+                    {"user_id": user[0],
+                     "exp": app.datetime.datetime.utcnow() + app.datetime.timedelta(minutes=1)},
                     app.app.config["SECRET_KEY"],
                     algorithm="HS256"
                 )
+
+
                 print(token)
                 return token
             except Exception as e:

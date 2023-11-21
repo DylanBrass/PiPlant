@@ -25,7 +25,13 @@ def secured_endpoint(f):
 
         print("token is not none")
         try:
-            data = jwt.decode(token, current_app.config["SECRET_KEY"], algorithms=["HS256"])
+            try:
+                data = jwt.decode(token, current_app.config["SECRET_KEY"], algorithms=["HS256"], verify=True)
+            except jwt.ExpiredSignatureError:
+                return jsonify(
+                    message="Token has expired!",
+                    error="Unauthorized"
+                ), 401
             print(data)
             current_user = db_fetch_functions.get_by_id(data["user_id"])
             print(current_user)

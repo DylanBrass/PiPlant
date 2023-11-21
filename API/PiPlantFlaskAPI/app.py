@@ -1,4 +1,5 @@
 import os
+import uuid
 
 from flask import Flask, request
 from flask_cors import cross_origin, CORS
@@ -79,10 +80,10 @@ def loginEndpoint():
         token = login(loginDTO.get("username"), loginDTO.get("password"))
         if token is None:
             abort(401)
-        response = jsonify(username=loginDTO.get("username"))
+        response = jsonify(username=loginDTO.get("username"), token=uuid.uuid4())
         domain = urlparse(request.base_url).hostname + ":3000"
         response.set_cookie("Bearer", token, httponly=True, max_age=900, path="/", samesite="None",
-                            domain=domain)
+                            domain=domain, secure=False)
         response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS, PUT, DELETE"
         return response
 
