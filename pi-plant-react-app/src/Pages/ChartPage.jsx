@@ -5,10 +5,12 @@ import { LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts';
 import Navbar from './NavigationBar';
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css'
+import {useAuth} from "../AuthProvider/AuthProvider";
 
 axios.defaults.withCredentials = true
 
 function ChartPage() {
+    const auth = useAuth();
 
     const [data, setData] = useState([])
 
@@ -26,6 +28,10 @@ function ChartPage() {
         })
         .catch(function (error) {
             console.log(error)
+
+            if (error.response.status === 401) {
+                auth.authError()
+            }
         })
     }
 
@@ -38,7 +44,13 @@ function ChartPage() {
         .catch(function (error) {
             console.log(error)
             setData([])
-            alert("No data for this date")
+            if (error.response.status === 404) {
+                alert("No data for this date")
+            }
+
+            if (error.response.status === 401) {
+                auth.authError()
+            }
         })
     }
     useEffect(() => {

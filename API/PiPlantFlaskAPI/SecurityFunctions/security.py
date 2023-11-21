@@ -28,10 +28,13 @@ def secured_endpoint(f):
             try:
                 data = jwt.decode(token, current_app.config["SECRET_KEY"], algorithms=["HS256"], verify=True)
             except jwt.ExpiredSignatureError:
-                return jsonify(
+                response = jsonify(
                     message="Token has expired!",
                     error="Unauthorized"
-                ), 401
+                )
+                response.status_code = 401
+                response.set_cookie("Bearer", "", httponly=True, max_age=0, path="/", samesite="None")
+                return response
             print(data)
             current_user = db_fetch_functions.get_by_id(data["user_id"])
             print(current_user)
@@ -40,8 +43,6 @@ def secured_endpoint(f):
                     message="Invalid Authentication token!",
                     error="Unauthorized"
                 ), 401
-
-
         except Exception as e:
             return jsonify(
                 message="Unknown error occurred!",

@@ -1,24 +1,39 @@
-import Cookies from 'js-cookie'
+// AuthContext.js
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
-export const getAccessToken = () => Cookies.get('access_token')
-export const getRefreshToken = () => Cookies.get('refresh_token')
-export const isAuthenticated = () => !!getAccessToken()
+const AuthContext = createContext();
 
-export const authenticate = async () => {
-    if (getRefreshToken()) {
-        try {
+const AuthProvider = ({ children }) => {
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+    const login = () => {
+        setIsAuthenticated(true);
+    };
 
-            Cookies.set('access_token', tokens.access_token, { expires: inOneHour })
-            Cookies.set('refresh_token', tokens.refresh_token)
+    const logout = () => {
+        setIsAuthenticated(false);
+        window.location.href = "/login";
 
-            return true
-        } catch (error) {
-            redirectToLogin()
-            return false
-        }
+    };
+
+    const authError = () => {
+        setIsAuthenticated(false);
+        window.location.href = "/login";
     }
 
-    redirectToLogin()
-    return false
-}
+    return (
+        <AuthContext.Provider value={{ isAuthenticated, login, logout, authError }}>
+            {children}
+        </AuthContext.Provider>
+    );
+};
+
+const useAuth = () => {
+    const context = useContext(AuthContext);
+    if (!context) {
+        throw new Error('useAuth must be used within an AuthProvider');
+    }
+    return context;
+};
+
+export { AuthProvider, useAuth };

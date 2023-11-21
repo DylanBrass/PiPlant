@@ -3,10 +3,14 @@ import React, { useState } from 'react';
 import './Login.css'; // Import your CSS file for styling
 import plant1 from './Plant1.jpg'
 import axios from "axios";
+import {useAuth} from "../AuthProvider/AuthProvider";
 
 axios.defaults.withCredentials = true
 
 function Login() {
+    const auth = useAuth();
+
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -29,6 +33,8 @@ function Login() {
         .then(function (response) {
           alert("Success")
             console.log(response);
+            auth.login()
+            window.location.href = "/";
 
         })
         .catch(function (error) {
@@ -37,10 +43,13 @@ function Login() {
         });
 
   };
-
+    if(auth.isAuthenticated){
+        window.location.href = "/"
+    }
   return (
     <div>
       <NavigationBar />
+
       <div className="login-container">
       <img src={plant1} alt="Plant" className="login-box-image"/>
       

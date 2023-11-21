@@ -7,9 +7,12 @@ import gradientBackground from './gradientBackground.avif';
 import lightBulb2 from './light-bulb.png';
 import lightBulb1 from './light-bulb2.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {useAuth} from "../AuthProvider/AuthProvider";
 
 axios.defaults.withCredentials = true
 function MainPage() {
+    const auth = useAuth();
+
   const [recentValues, setRecentValues] = useState([]);
   const [selectedLight, setSelectedLight] = useState(1);
   const [numberOfLights, setNumberOfLights] = useState(0);
@@ -20,10 +23,13 @@ function MainPage() {
       .get('http://' + window.location.hostname + ':5000/getCurrentValues')
       .then(function (response) {
         setRecentValues(response.data.allValues);
-        console.log(response.data.allValues);
+        console.log(response.data.allValues)
       })
       .catch((error) => {
         console.log(error);
+        if (error.response.status === 401) {
+            auth.authError()
+        }
       });
   };
 
@@ -35,6 +41,9 @@ function MainPage() {
       })
       .catch(function (error) {
         console.log(error);
+          if (error.response.status === 401) {
+              auth.authError()
+          }
       });
   };
 
