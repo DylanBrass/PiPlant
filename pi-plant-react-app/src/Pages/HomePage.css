@@ -1,10 +1,12 @@
 .toggle-img {
-    width: 70px;
-    height: 70px;
+    width: 150px;
+    height: auto;
 }
 
 .img {
-    margin-top: 15%;
+    margin-top: 1%;
+    width: 500px;
+    height: auto;
 }
 
 .plant-details-container {
@@ -42,8 +44,6 @@
     line-height: 1;
     list-style: none;
     overflow: hidden;
-    padding-left: 16px;
-    padding-right: 16px;
     position: relative;
     text-align: left;
     text-decoration: none;
@@ -139,3 +139,11 @@ body {
 html, body, #root {
     height: 100%;
 }
+
+.box {
+    background-color: white;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px; 
+    margin: 10px;
+  }
+  

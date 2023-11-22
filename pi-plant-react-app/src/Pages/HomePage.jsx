@@ -7,11 +7,11 @@ import gradientBackground from './gradientBackground.avif';
 import lightBulb2 from './light-bulb.png';
 import lightBulb1 from './light-bulb2.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {useAuth} from "../AuthProvider/AuthProvider";
+import { useAuth } from "../AuthProvider/AuthProvider";
 
 axios.defaults.withCredentials = true
 function MainPage() {
-    const auth = useAuth();
+  const auth = useAuth();
 
   const [recentValues, setRecentValues] = useState([]);
   const [selectedLight, setSelectedLight] = useState(1);
@@ -28,7 +28,7 @@ function MainPage() {
       .catch((error) => {
         console.log(error);
         if (error.response.status === 401) {
-            auth.authError()
+          auth.authError()
         }
       });
   };
@@ -41,9 +41,9 @@ function MainPage() {
       })
       .catch(function (error) {
         console.log(error);
-          if (error.response.status === 401) {
-              auth.authError()
-          }
+        if (error.response.status === 401) {
+          auth.authError()
+        }
       });
   };
 
@@ -62,12 +62,13 @@ function MainPage() {
   return (
 
     <div>
-   <Navbar />
+      <Navbar />
 
       <div className="container">
 
         <h1>My Plant Health</h1>
-        <div className="row">
+        <div className="box">
+          <div className="row">
             <div className="col">
               <h2>Lights</h2>
               <p>Please select the light you wish to toggle</p>
@@ -86,6 +87,7 @@ function MainPage() {
             </div>
             <div className="col">
               <h2>Plant Statistics</h2>
+              <p>Press to generate current plant values</p>
               <button className="button" role="button" onClick={() => getRecent()}>Get Current Value</button>
               {recentValues.map(element => (
                 <div key={element.sensorNum}>
@@ -96,13 +98,14 @@ function MainPage() {
               ))}
             </div>
             <div className="col">
-            <img src={plant2} alt="Plant Image" className="img" />
-          </div>
+              <img src={plant2} alt="Plant Image" className="img" />
+            </div>
           </div>
         </div>
       </div>
-      
-    
+    </div>
+
+
   );
 }
 
