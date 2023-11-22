@@ -37,6 +37,8 @@ function MainPage() {
     axios.post('http://' + window.location.hostname + ':5000/toggleLight/' + selectedLight)
       .then(function (response) {
         console.log(response);
+        const newLightStatus = response.data.lightStatus;
+        setIsLightOn(newLightStatus);
       })
       .catch(function (error) {
         console.log(error);
@@ -46,6 +48,21 @@ function MainPage() {
       });
   };
 
+  const isLightToggled = () => {
+    axios.post('http://' + window.location.hostname + ':5000/lightStatus/' + selectedLight)
+      .then(function (response) {
+        console.log(response);
+        const lightStatus = response.data.lightStatus;
+        setIsLightOn(lightStatus);
+      })
+      .catch(function (error) {
+        console.log(error);
+        if (error.response.status === 401) {
+          auth.authError();
+        }
+      });
+  };
+  
 
   useEffect(() => {
     if (!auth.isAuthenticated) {
@@ -59,6 +76,7 @@ function MainPage() {
         console.log(error);
       });
 
+    isLightToggled();
     getRecent();
   }, []);
 
