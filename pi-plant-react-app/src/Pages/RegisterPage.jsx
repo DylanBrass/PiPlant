@@ -14,8 +14,7 @@ function RegisterPage() {
             password: event.target[1].value
         }).then(function (response) {
             console.log(response);
-            alert("Registered!")
-            redirect("/login")
+            window.location.href = "/login"
         }).catch(function (error) {
             console.log(error);
         })
