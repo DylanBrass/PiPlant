@@ -48,6 +48,9 @@ function MainPage() {
   };
 
   useEffect(() => {
+    if (!auth.isAuthenticated) {
+      auth.authError()
+    }
     axios.get('http://' + window.location.hostname + ':5000/numberOfLights')
       .then(function (response) {
         console.log(response.data.numberOfLights);
