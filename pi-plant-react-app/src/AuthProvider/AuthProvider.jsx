@@ -4,7 +4,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-    const [isAuthenticated, setIsAuthenticated] = useState(() =>{return localStorage.getItem('isAuthenticated') || false})
+    const [isAuthenticated, setIsAuthenticated] = useState(() =>{return localStorage.getItem('isAuthenticated') === 'true' || false})
 
     useEffect(() => {
         localStorage.setItem('isAuthenticated', isAuthenticated.toString())
