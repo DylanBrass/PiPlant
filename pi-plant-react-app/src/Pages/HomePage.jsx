@@ -93,7 +93,7 @@ function MainPage() {
               <p>Press to generate current plant values</p>
               <button className="button" role="button" onClick={() => getRecent()}>Get Current Value</button>
               {recentValues.map(element => (
-                <div key={element.sensorNum} style="margin-top: 10px;">
+                <div key={element.sensorNum}>
                   <h3>Sensor #{element.sensorNum}</h3>
                   <p>Value: {element.values.Value}</p>
                   <p>Voltage: {element.values.Voltage}</p>
