@@ -31,14 +31,13 @@ function Login() {
         password:  password
     })
         .then(function (response) {
-          alert("Success")
             console.log(response);
           if (response.status === 200) {
               auth.login()
           }
         })
         .catch(function (error) {
-          alert("Failed")
+          alert("Error logging in please try again" + error)
             console.log(error);
 
         });
