@@ -67,6 +67,7 @@ function ChartPage() {
         <div>
             <Navbar />
             <center>
+                <div className='row'>
                 <h1>Chart Page</h1>
 
                 <div className='box'>
@@ -94,6 +95,7 @@ function ChartPage() {
                             ))}
                         </select>
                     </div>
+                </div>
                 </div>
             </center>
         </div>
