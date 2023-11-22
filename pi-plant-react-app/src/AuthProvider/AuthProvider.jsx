@@ -4,8 +4,11 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(() =>{return localStorage.getItem('isAuthenticated') || false});
 
+    useEffect(() => {
+        localStorage.setItem('isAuthenticated', isAuthenticated.toString());
+    }, [isAuthenticated])
     const login = () => {
         setIsAuthenticated(true);
         window.location.href = "/";
@@ -21,6 +24,7 @@ const AuthProvider = ({ children }) => {
         setIsAuthenticated(false);
         window.location.href = "/login";
     }
+
 
     return (
         <AuthContext.Provider value={{ isAuthenticated, login, logout, authError }}>
