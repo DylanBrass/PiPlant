@@ -21,7 +21,7 @@ const AuthProvider = ({ children }) => {
     };
 
     const authError = () => {
-        localStorage.clear()
+        setIsAuthenticated(false)
         window.location.href = "/login"
     }
 

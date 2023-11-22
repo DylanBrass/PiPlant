@@ -32,7 +32,7 @@ const NavigationBar = () => {
         <li>
           <Link to="/" style={{color:'white'}}>Home</Link>
           </li>
-          {(!localStorage.getItem("isAuthenticated") || false) &&
+          {!auth.isAuthenticated &&
               <>
                 <li>
                   <Link to="/login" style={{color:'white'}}>Login</Link>
@@ -45,7 +45,7 @@ const NavigationBar = () => {
         <li>
             <Link to="/chart" style={{color:'white'}}>Chart</Link>
         </li>
-          {(localStorage.getItem("isAuthenticated") || false) &&
+          {auth.isAuthenticated &&
         <li>
             <button className="logout-button" onClick={logoutPost}>
               Logout
