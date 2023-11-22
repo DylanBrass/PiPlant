@@ -9,7 +9,6 @@ import {useAuth} from "../AuthProvider/AuthProvider";
 
 const NavigationBar = () => {
     const auth = useAuth();
-    const [authState, setAuthState] = useState(false);
       const logoutPost = () => {
         axios.post('http://' + window.location.hostname + ':5000/logout')
           .then(function (response) {
@@ -21,9 +20,6 @@ const NavigationBar = () => {
           });
       }
 
-  useEffect(() => {
-      setAuthState(auth.isAuthenticated)
-  }, [auth.isAuthenticated]);
 
   return (
     <nav>
@@ -36,7 +32,7 @@ const NavigationBar = () => {
         <li>
           <Link to="/" style={{color:'white'}}>Home</Link>
           </li>
-          {!authState &&
+          {!auth.isAuthenticated &&
               <>
                 <li>
                   <Link to="/login" style={{color:'white'}}>Login</Link>
@@ -49,7 +45,7 @@ const NavigationBar = () => {
         <li>
             <Link to="/chart" style={{color:'white'}}>Chart</Link>
         </li>
-          {authState &&
+          {auth.isAuthenticated &&
         <li>
             <button className="logout-button" onClick={logoutPost}>
               Logout
