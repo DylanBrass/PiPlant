@@ -21,18 +21,21 @@ app.config['SECRET_KEY'] = SECRET_KEY
 
 @app.route('/numberOfLights')
 @cross_origin(allow_headers="*", supports_credentials=True)
+@secured_endpoint
 def numberOfLightsEndpoint():
     return numberOfLights()
 
 
 @app.route("/numberOfMoistureSensors")
 @cross_origin(allow_headers="*", supports_credentials=True)
+@secured_endpoint
 def numberOfMoistureSensorsEndpoint():
     return numberOfMoistureSensors()
 
 
 @app.route('/toggleLight/<lightNumber>', methods=['POST'])
 @cross_origin(allow_headers="*", supports_credentials=True)
+@secured_endpoint
 def toggleLightEndpoint(lightNumber: int):
     return toggleLight(int(lightNumber))
 
