@@ -35,7 +35,7 @@ function RegisterPage() {
                         </div>
                         <div className="form-group">
                             <label htmlFor="password">Password</label>
-                            <input id="password" />
+                            <input type="password" id="password" />
                         </div>
                         <button className="register-button" type="submit">Register</button>
                     </form>

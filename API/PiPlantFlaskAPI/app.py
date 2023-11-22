@@ -62,7 +62,7 @@ def getUsersEndpoint():
     return fetchUsers()
 
 
-@app.route("/createAccount", methods=['POST'])
+@app.route("/register", methods=['POST'])
 @cross_origin(allow_headers="*", supports_credentials=True)
 def createAccountEndpoint():
     if request.method == 'POST':
