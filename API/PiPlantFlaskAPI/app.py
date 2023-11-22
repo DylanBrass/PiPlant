@@ -25,11 +25,13 @@ app.config['SECRET_KEY'] = SECRET_KEY
 def numberOfLightsEndpoint():
     return numberOfLights()
 
+
 @app.route('/lightStatus/<lightNumber>')
 @cross_origin(allow_headers="*", supports_credentials=True)
 @secured_endpoint
 def lightStatusEndpoint(lightNumber: int):
     return lightStatus(int(lightNumber))
+
 
 @app.route("/numberOfMoistureSensors")
 @cross_origin(allow_headers="*", supports_credentials=True)
