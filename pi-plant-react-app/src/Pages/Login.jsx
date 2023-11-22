@@ -40,15 +40,11 @@ function Login() {
         .catch(function (error) {
           alert("Failed")
             console.log(error);
-            
+
         });
 
   };
-    useEffect(() => {
-        if(auth.isAuthenticated){
-            window.location.href = "/"
-        }
-    }, []);
+
 
   return (
     <div>

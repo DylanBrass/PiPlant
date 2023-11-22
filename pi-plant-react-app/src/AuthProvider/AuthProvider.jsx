@@ -4,25 +4,25 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-    const [isAuthenticated, setIsAuthenticated] = useState(() =>{return localStorage.getItem('isAuthenticated') || false});
+    const [isAuthenticated, setIsAuthenticated] = useState(() =>{return localStorage.getItem('isAuthenticated') || false})
 
     useEffect(() => {
-        localStorage.setItem('isAuthenticated', isAuthenticated.toString());
+        localStorage.setItem('isAuthenticated', isAuthenticated.toString())
     }, [isAuthenticated])
     const login = () => {
-        setIsAuthenticated(true);
-        window.location.href = "/";
+        setIsAuthenticated(true)
+        window.location.href = "/"
     };
 
     const logout = () => {
-        setIsAuthenticated(false);
-        window.location.href = "/login";
+        setIsAuthenticated(false)
+        window.location.href = "/login"
 
     };
 
     const authError = () => {
         localStorage.clear()
-        window.location.href = "/login";
+        window.location.href = "/login"
     }
 
 
@@ -30,8 +30,8 @@ const AuthProvider = ({ children }) => {
         <AuthContext.Provider value={{ isAuthenticated, login, logout, authError }}>
             {children}
         </AuthContext.Provider>
-    );
-};
+    )
+}
 
 const useAuth = () => {
     const context = useContext(AuthContext);
