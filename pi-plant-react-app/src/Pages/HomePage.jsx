@@ -47,6 +47,7 @@ function MainPage() {
       });
   };
 
+
   useEffect(() => {
     if (!auth.isAuthenticated) {
       window.location.href = "/login"
@@ -94,6 +95,7 @@ function MainPage() {
               <button className="button" role="button" onClick={() => getRecent()}>Get Current Value</button>
               {recentValues.map(element => (
                 <div key={element.sensorNum}>
+                  <b></b>
                   <h3>Sensor #{element.sensorNum}</h3>
                   <p>Value: {element.values.Value}</p>
                   <p>Voltage: {element.values.Voltage}</p>
