@@ -37,7 +37,6 @@ function MainPage() {
     axios.post('http://' + window.location.hostname + ':5000/toggleLight/' + selectedLight)
       .then(function (response) {
         console.log(response);
-        setIsLightOn(response.data.lightStatus);
       })
       .catch(function (error) {
         console.log(error);
@@ -95,7 +94,7 @@ function MainPage() {
               <button className="button" role="button" onClick={() => getRecent()}>Get Current Value</button>
               {recentValues.map(element => (
                 <div key={element.sensorNum}>
-                  <b></b>
+                  <hr/>
                   <h3>Sensor #{element.sensorNum}</h3>
                   <p>Value: {element.values.Value}</p>
                   <p>Voltage: {element.values.Voltage}</p>
