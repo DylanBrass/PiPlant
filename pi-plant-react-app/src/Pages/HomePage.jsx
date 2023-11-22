@@ -49,7 +49,7 @@ function MainPage() {
 
   useEffect(() => {
     if (!auth.isAuthenticated) {
-      auth.authError()
+      window.location.href = "/login"
     }
     axios.get('http://' + window.location.hostname + ':5000/numberOfLights')
       .then(function (response) {

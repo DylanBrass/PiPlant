@@ -7,9 +7,6 @@ const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(() =>{return localStorage.getItem('isAuthenticated') === 'true' || false})
 
     useEffect(() => {
-        if(!isAuthenticated) {
-            window.location.href = "/login"
-        }
         localStorage.setItem('isAuthenticated', isAuthenticated.toString())
     }, [isAuthenticated])
     const login = () => {
