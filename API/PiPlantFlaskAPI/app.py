@@ -92,7 +92,7 @@ def loginEndpoint():
             abort(401)
         response = jsonify(username=loginDTO.get("username"), token=uuid.uuid4())
         domain = urlparse(request.base_url).hostname + ":3000"
-        response.set_cookie("Bearer", token, httponly=True, max_age=900, path="/", samesite="None",
+        response.set_cookie("Bearer", token, httponly=True, max_age=900, path="/",
                             domain=domain, secure=False)
         response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS, PUT, DELETE"
         return response
