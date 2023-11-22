@@ -29,9 +29,11 @@ const NavigationBar = () => {
           <img src={logo}  atl="logo"/>
           </Link>
         </li>
-        <li>
-          <Link to="/" style={{color:'white'}}>Home</Link>
-          </li>
+          {auth.isAuthenticated &&
+            <li>
+              <Link to="/" style={{color:'white'}}>Home</Link>
+            </li>
+          }
           {!auth.isAuthenticated &&
               <>
                 <li>
@@ -42,15 +44,18 @@ const NavigationBar = () => {
                 </li>
               </>
         }
-        <li>
-            <Link to="/chart" style={{color:'white'}}>Chart</Link>
-        </li>
-          {auth.isAuthenticated &&
-        <li>
-            <button className="logout-button" onClick={logoutPost}>
-              Logout
-            </button>
-        </li>
+            {auth.isAuthenticated &&
+                <>
+                    <li>
+                        <Link to="/chart" style={{color:'white'}}>Chart</Link>
+                    </li>
+
+                    <li>
+                        <button className="logout-button" onClick={logoutPost}>
+                          Logout
+                        </button>
+                    </li>
+                </>
           }
       </ul>
     </nav>
