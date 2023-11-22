@@ -92,7 +92,6 @@ function MainPage() {
                   <h3>Sensor #{element.sensorNum}</h3>
                   <p>Value: {element.values.Value}</p>
                   <p>Voltage: {element.values.Voltage}</p>
-                    <img src={element.image} alt="Service Image" />
                 </div>
               ))}
             </div>
