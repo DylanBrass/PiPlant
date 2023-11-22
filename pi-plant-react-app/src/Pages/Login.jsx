@@ -10,16 +10,15 @@ axios.defaults.withCredentials = true
 function Login() {
     const auth = useAuth();
 
-
-  const [username, setUsername] = useState('');
+    const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleEmailChange = (e) => {
     setUsername(e.target.value);
-  };
+  }
 
   const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
+    setPassword(e.target.value)
   };
 
   const handleSubmit = (e) => {
