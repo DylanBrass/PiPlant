@@ -51,7 +51,7 @@ const NavigationBar = () => {
                     </li>
 
                     <li>
-                        <button className="logout-button" onClick={logoutPost}>
+                        <button style={{color:'white'}} className="logout-button" onClick={logoutPost}>
                           Logout
                         </button>
                     </li>
