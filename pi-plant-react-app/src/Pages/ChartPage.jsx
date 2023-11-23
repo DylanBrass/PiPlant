@@ -67,35 +67,41 @@ function ChartPage() {
         <div>
             <Navbar />
             <center>
-                <div className='row'>
+
                 <h1>Chart Page</h1>
 
                 <div className='box'>
-                    <div className='chart'>
-                        <LineChart width={700} height={500} data={data}>
-                            <XAxis tick={{ color: "#000000" }} dataKey="time" />
-                            <YAxis tick={{ color: "#000000" }} dataKey="value" type="number" domain={[0, 'dataMax']} />
-                            <CartesianGrid stroke="#000000" strokeDasharray="5 5" fill='white' />
-                            <Line type="monotone" dataKey="value" stroke="#000000" />
-                        </LineChart>
+                    <div className="row justify-content-center">
+                        <div className="col-md-12">
+
+                            <div className='chart'>
+                                <LineChart width={700} height={500} data={data}>
+                                    <XAxis tick={{ color: "#000000" }} dataKey="time" />
+                                    <YAxis tick={{ color: "#000000" }} dataKey="value" type="number" domain={[0, 'dataMax']} />
+                                    <CartesianGrid stroke="#000000" strokeDasharray="5 5" fill='white' />
+                                    <Line type="monotone" dataKey="value" stroke="#000000" />
+                                </LineChart>
+                            </div>
+                        </div>
+                        <br />
+                        <div className="col-md-12">
+                            <div className='datepicker'>
+                                <DatePicker
+                                    showIcon
+                                    dateFormat="yyyy-MM-dd"
+                                    selected={selectedDate}
+                                    onChange={(date) => setSelectedDate(date)}
+                                />
+                                <select
+                                    onChange={(e) => setSelectedSensor(e.target.value)}
+                                    defaultValue={selectedSensor}>
+                                    {Array.from(Array(numberOfSensors).keys()).map((i) => (
+                                        <option value={i + 1} key={i + 1}>{i + 1}</option>
+                                    ))}
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                    <br />
-                    <div className='datepicker'>
-                        <DatePicker
-                            showIcon
-                            dateFormat="yyyy-MM-dd"
-                            selected={selectedDate}
-                            onChange={(date) => setSelectedDate(date)}
-                        />
-                        <select
-                            onChange={(e) => setSelectedSensor(e.target.value)}
-                            defaultValue={selectedSensor}>
-                            {Array.from(Array(numberOfSensors).keys()).map((i) => (
-                                <option value={i + 1} key={i + 1}>{i + 1}</option>
-                            ))}
-                        </select>
-                    </div>
-                </div>
                 </div>
             </center>
         </div>
