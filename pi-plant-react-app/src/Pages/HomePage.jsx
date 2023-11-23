@@ -52,8 +52,8 @@ function MainPage() {
     axios.post('http://' + window.location.hostname + ':5000/lightStatus/' + selectedLight)
       .then(function (response) {
         console.log(response);
-        const lightStatus = response.data.lightStatus;
-        setIsLightOn(lightStatus);
+        const lightStatus = response.data.lightStatus
+        setIsLightOn(lightStatus)
       })
       .catch(function (error) {
         console.log(error);
@@ -75,10 +75,13 @@ function MainPage() {
       }).catch(function (error) {
         console.log(error);
       });
-
-    isLightToggled();
+    // isLightToggled()
     getRecent();
   }, []);
+
+  useEffect(() => {
+    isLightToggled()
+  }, [selectedLight])
 
   return (
 
