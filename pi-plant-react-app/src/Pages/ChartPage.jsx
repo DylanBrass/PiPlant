@@ -85,6 +85,8 @@ function ChartPage() {
                             <div className="col-4"/>
                         </div>
                         <br />
+                    </div>
+                    <div className="row justify-content-center">
                         <div className="col-md-12">
                             <div className='datepicker'>
                                 <DatePicker
