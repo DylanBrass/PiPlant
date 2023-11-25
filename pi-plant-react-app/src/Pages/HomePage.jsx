@@ -49,7 +49,7 @@ function MainPage() {
   };
 
   const isLightToggled = () => {
-    axios.post('http://' + window.location.hostname + ':5000/lightStatus/' + selectedLight)
+    axios.get('http://' + window.location.hostname + ':5000/lightStatus/' + selectedLight)
       .then(function (response) {
         console.log(response);
         const lightStatus = response.data.lightStatus
