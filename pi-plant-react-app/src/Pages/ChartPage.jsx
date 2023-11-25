@@ -72,7 +72,7 @@ function ChartPage() {
 
                 <div className='container'>
                     <div className="row justify-content-center">
-                            <div className='col-4 chart'>
+                            <div className='box chart'>
                                 <LineChart width={700} height={500} data={data}>
                                     <XAxis tick={{ color: "#000000" }} dataKey="time" />
                                     <YAxis tick={{ color: "#000000" }} dataKey="value" type="number" domain={[0, 'dataMax']} />
@@ -83,7 +83,7 @@ function ChartPage() {
                     </div>
                     <div className="row justify-content-center">
                         <div className="col-12">
-                            <div className='datepicker'>
+                            <div>
                                 <DatePicker
                                     showIcon
                                     dateFormat="yyyy-MM-dd"
