@@ -70,7 +70,7 @@ function ChartPage() {
 
                 <h1>Chart Page</h1>
 
-                <div className='box'>
+                <div className='box container'>
                     <div className="row justify-content-center">
                         <div className="col-4"/>
                         <div className="col-md-12">
@@ -83,7 +83,6 @@ function ChartPage() {
                                 </LineChart>
                             </div>
                             <div className="col-4"/>
-
                         </div>
                         <br />
                         <div className="col-md-12">
