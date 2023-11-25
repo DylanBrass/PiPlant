@@ -70,10 +70,8 @@ function ChartPage() {
 
                 <h1>Chart Page</h1>
 
-                <div className='box container'>
+                <div className='container'>
                     <div className="row justify-content-center">
-                        <div className="col-4"/>
-                        <div className="col-md-12">
                             <div className='col-4 chart'>
                                 <LineChart width={700} height={500} data={data}>
                                     <XAxis tick={{ color: "#000000" }} dataKey="time" />
@@ -81,13 +79,10 @@ function ChartPage() {
                                     <CartesianGrid stroke="#000000" strokeDasharray="5 5" fill='white' />
                                     <Line type="monotone" dataKey="value" stroke="#000000" />
                                 </LineChart>
-                            </div>
-                            <div className="col-4"/>
                         </div>
-                        <br />
                     </div>
                     <div className="row justify-content-center">
-                        <div className="col-md-12">
+                        <div className="col-12">
                             <div className='datepicker'>
                                 <DatePicker
                                     showIcon
