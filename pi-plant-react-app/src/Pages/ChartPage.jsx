@@ -72,7 +72,7 @@ function ChartPage() {
 
                 <div className='container'>
                     <div className="row justify-content-center">
-                            <div className='box chart'>
+                            <div className='white-bg chart'>
                                 <LineChart width={700} height={500} data={data}>
                                     <XAxis tick={{ color: "#000000" }} dataKey="time" />
                                     <YAxis tick={{ color: "#000000" }} dataKey="value" type="number" domain={[0, 'dataMax']} />
